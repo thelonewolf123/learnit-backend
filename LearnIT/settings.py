@@ -26,7 +26,7 @@ SECRET_KEY = ')i!r#evcy-xf@#pg)fu6af=9q7)7pv*j4z7s#5^a_td3+1)(7c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'learncodex.apps.LearncodexConfig',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 AUTHENTICATION_BACKENDS = [
 
@@ -167,3 +168,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'deardiary.team@gmail.com'
 EMAIL_HOST_PASSWORD = 'psqdmgqbrxtvkxjr'
+
+STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

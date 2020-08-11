@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('',include('learncodex.urls')),
-    path('accounts/profile/',views.profile,name='ptofile')
+    path('accounts/profile/',views.profile,name='ptofile'),
+    path('summernote/', include('django_summernote.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

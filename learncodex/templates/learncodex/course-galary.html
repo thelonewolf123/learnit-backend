@@ -23,6 +23,7 @@ LearnIT | Course galary
 <div class="row content">
     <div class="col-md-9 m-0 p-0">
         <div class="row">
+            {% if paid %}
             <video id="player" class="img-fluid w-100" playsinline controls data-poster="/path/to/poster.jpg">
                 <!-- <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
@@ -30,13 +31,16 @@ LearnIT | Course galary
                 <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="720" /> -->
-                    <source
-                    src="#"
-                    type="video/mp4" size="720" />
+                <source src="#" type="video/mp4" size="720" />
 
                 <!-- Captions are optional -->
                 <!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
             </video>
+            {% else %}
+            <video controls="controls" id="player">
+                <source type="video/mp4" src="https://www.googleapis.com/drive/v3/files/1sBSUf2oD4XcJpUgnMdh3YRZRkABmtwzp?key=AIzaSyAViHONWckfLzHpgfBazX_birXa2gSmr8A&alt=media">
+            </video>
+            {% endif %}
         </div>
         <div class="row">
             <div class="card w-100" data-toggle="collapse" data-target="#discription" aria-expanded="false"
@@ -168,4 +172,14 @@ LearnIT | Course galary
 <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
 <script src="{% static 'learncodex/js/course_galary.js' %}"></script>
 <script src="https://cdn.plyr.io/3.6.2/demo.js"></script>
+
+<script>
+    const player = new Plyr('#player', {
+        title: 'Example Title',
+        settings : ['captions', 'quality', 'speed', 'loop'],
+        quality : { default: 576, options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240] }
+        
+    });
+</script>
+
 {% endblock %}

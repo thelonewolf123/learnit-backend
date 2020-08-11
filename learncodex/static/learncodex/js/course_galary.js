@@ -18,8 +18,8 @@ $(document).ready(function () {
       if(screen == 'sm' || screen == 'xs')
       {
           $('#discription').collapse('toggle')
-          $('.content').css('margin-left','0px')
-          $('.content').css('margin-right','0px')
+          $('.content').css('margin-left','15px')
+          $('.content').css('margin-right','15px')
           console.log(screen)
       }
       else{
