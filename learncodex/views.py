@@ -3,19 +3,19 @@ from django.http import HttpResponse
 
 def index(request):
 
-    return HttpResponse('Home page')
+    return render(request,'learnit/home.html')
 
 def courses(request):
 
-    return render(request,'learncodex/course-list.html')
+    return render(request,'learnit/course-list.html')
 
-def course_detail(request):
+def course_detail(request,course):
 
-    return HttpResponse('Course detail page')
+    return render(request,'learnit/single-course.html')
 
 def course_learning(request,course,lesson):
 
-    return render(request,'learncodex/course-galary.html')
+    return render(request,'learnit/course-galary.html')
 
 
 def profile(request):

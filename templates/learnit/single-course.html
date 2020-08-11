@@ -1,0 +1,149 @@
+{% extends 'learnit/base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'learnit/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-xs-flex d-sm-flex d-md-flex d-lg-none d-xl-none search-form-sm">
+    <form class="form-inline d-flex justify-content-center md-form form-sm primary mt-2" style="color: white;">
+        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+        <i class="fas fa-search" style="color: white;" aria-hidden="true"></i>
+    </form>
+</div>
+
+<div class="d-none d-sm-none d-lg-flex search-form">
+    <form action="#" class="form-inline">
+        <input type="text" name="search" class="form-control" placeholder="Enter your search term" id="search-input">
+        <button class="btn btn-success search-btn m-0">
+            Search
+        </button>
+    </form>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 mt-5 d-none d-md-block">
+            <h3 class="text-center">
+                Catogeries
+            </h3>
+
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action active">
+                    Technology
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    Web development
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    Ethical Hacking
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    SQL
+                </li>
+            </ul>
+            <h3 class="text-center mt-2">
+                Tags
+            </h3>
+
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action">
+                    Web pen testing
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    Networking
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    Sys Admin
+                </li>
+                <li class="list-group-item list-group-item-action">
+                    Javascript
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-9">
+
+            <div class="container">
+                <div class="m-4 index-title ">
+                    <h2 class="text-center">
+                        Course Title
+                    </h2>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <img src="https://via.placeholder.com/300" alt="" class="img-fluid">
+                </div>
+                <div class="row w-100 mt-3 mb-2">
+                    <div>
+                        Price: $15
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo architecto cumque quasi? Commodi
+                    suscipit architecto molestiae eaque numquam saepe cum dignissimos? Rerum dolorem aut ex tempore
+                    atque earum repudiandae quam, sint, eaque fugiat quidem consequatur quia deserunt ullam itaque.
+                    Rem, accusantium? Pariatur qui autem odio eaque possimus maiores, perspiciatis perferendis
+                    eveniet voluptates mollitia quas! Nobis, ipsa! Aliquam id quo temporibus dicta totam
+                    consectetur, harum numquam cumque molestias ratione ad repellat obcaecati reprehenderit vero
+                    voluptates quam repellendus ut sequi sit, sunt quaerat nam blanditiis! Perspiciatis,
+                    exercitationem! Vitae blanditiis rem voluptatum ab vel beatae, quidem voluptates perspiciatis
+                    doloremque tempora ratione harum neque assumenda suscipit, eius eligendi eum corporis
+                    repudiandae accusantium! Dolorum minus pariatur error, mollitia quibusdam eos dicta harum,
+                    dolores at dignissimos, perferendis accusantium earum nobis! Qui ea ipsam consequuntur magni
+                    expedita laborum aspernatur sint, quod repellendus optio similique tenetur eos assumenda
+                    reprehenderit delectus quo placeat. Aspernatur explicabo reprehenderit ipsum dignissimos porro
+                    quod asperiores beatae praesentium animi dicta labore delectus, quos debitis ipsam possimus
+                    corrupti at optio, totam nam omnis quae. Aliquid porro eius veritatis aperiam, dolor ad
+                    recusandae earum explicabo commodi sequi quos eligendi ipsum enim eaque ducimus consequuntur
+                    distinctio vel molestiae, quae dolore at fuga quis. Cupiditate perspiciatis, facere sit alias
+                    molestias quisquam deleniti blanditiis! Placeat porro quidem voluptates ipsam sunt nisi dicta,
+                    dolores amet, explicabo eum quis voluptas, expedita voluptatum cumque nihil quasi reiciendis
+                    reprehenderit eaque. Sapiente error quibusdam, quod velit voluptate asperiores maxime rerum
+                    autem labore dolorem inventore! Earum, harum, illo officiis laboriosam incidunt repudiandae
+                    illum aperiam eius necessitatibus officia expedita! Nemo ea itaque, eligendi ad ipsa harum
+                    voluptas libero eos ipsam ex porro, quaerat eveniet animi inventore voluptatibus aperiam. Error
+                    quos amet inventore vel vero eaque ullam ad impedit maxime magnam libero porro aspernatur
+                    doloribus aliquid deserunt veniam minus quae, odit delectus eius a quis. Quo modi architecto hic
+                    sunt, quasi vel vitae saepe fugit sint eius perspiciatis! Eligendi repudiandae provident iure,
+                    cumque ab asperiores perspiciatis odio assumenda quam sed repellat consequatur laborum, hic quod
+                    incidunt maiores id voluptate illum ratione quos debitis sapiente. Dolor, quo? Fugit aperiam
+                    nobis magnam iusto? Incidunt itaque ratione aliquid, distinctio odit vel id ipsum quibusdam
+                    vitae perspiciatis natus eaque ut fugit dolor at nulla veritatis asperiores praesentium impedit
+                    in rem cumque? Omnis, aperiam? Commodi, iste earum repudiandae autem quisquam accusamus cumque
+                    fugiat quaerat! Reprehenderit, quaerat est repellat inventore accusamus obcaecati consequuntur
+                    natus tenetur debitis dolore rerum velit voluptatibus! Pariatur sint fuga fugit laborum eveniet
+                    assumenda porro quae eum modi quod in sit iusto tenetur quaerat, praesentium id at. Officia,
+                    aliquid! Magni incidunt fuga, in tempore possimus at eligendi laboriosam odit quibusdam nisi
+                    explicabo minus odio corrupti fugit labore saepe ipsa! Explicabo, eaque, illum obcaecati
+                    provident voluptatum sint repellat magni, saepe molestiae cumque dolore hic necessitatibus eum!
+                    Laborum eos earum nam dolorem dolor optio ab aspernatur veritatis culpa non harum corporis quis
+                    facilis tempora delectus voluptatibus nobis porro quidem, incidunt qui! Ducimus beatae nobis
+                    veritatis eos, possimus quibusdam ex necessitatibus! Quae adipisci, rem et soluta ducimus
+                    voluptate porro possimus nulla laborum, eveniet accusantium perspiciatis voluptas! Corporis
+                    eveniet cumque itaque explicabo impedit debitis voluptates dolorum ullam dicta, quas quis, qui
+                    perspiciatis sint? Ducimus, deserunt totam ipsum esse ullam inventore recusandae sunt molestiae.
+                    Tempore pariatur vitae non explicabo sequi rerum eius alias est. Eos ad architecto molestiae
+                    nemo laborum esse consequuntur facilis inventore ratione necessitatibus blanditiis, consequatur
+                    totam quasi modi deleniti quaerat. Vitae ea dolor obcaecati suscipit, sapiente possimus
+                    dignissimos sunt mollitia ut esse alias natus earum quia corrupti optio, eum voluptatum
+                    recusandae et. Libero repellat magni soluta assumenda ut? Temporibus, consectetur. Aperiam neque
+                    quae repellendus ea quam maxime nostrum in est non vitae!</div>
+                <div class="row d-flex justify-content-center m-4">
+                    <a href="#" class="btn btn-success">Enroll now</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
