@@ -70,18 +70,18 @@ LearnIT | Courses
                     </h2>
                 </div>
                 <ul class="list-group">
-                    {% for course in courses %}
+                    {% for sub in courses %}
                     <li class="card m-1 p-2 hoverable">
                         <div class="row course-item">
                             <div class="col-md-3">
-                                <img src="/media/{{ course.title_img }}" alt="thumbnail" class="img-thumbnail">
+                                <img src="/media/{{ sub.course.title_img }}" alt="thumbnail" class="img-thumbnail">
                             </div>
                             <div class="col-md-9">
                                 <h3 class="course-title">
-                                    {{ course.title }}
+                                    {{ sub.course.title }}
                                 </h3>
                                 <p class="course-discription">
-                                    {{ course.short_disc | safe }}
+                                    {{ sub.course.short_disc | safe }}
                                 </p>
                                 <div class="container">
                                     <h4>
@@ -89,9 +89,9 @@ LearnIT | Courses
                                             Price: Free
                                         </strong>
                                     </h4>
-                                    <a href="{% url 'course-detail' course=course.slug %}"
-                                        class="btn btn-primary float-right">
-                                        Enroll now
+                                    <a href="{% url 'course-learn' course=sub.course.slug %}"
+                                        class="btn btn-success float-right">
+                                        Learn now
                                     </a>
                                 </div>
                                 <div class="crear-fix"></div>

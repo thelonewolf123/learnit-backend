@@ -49,6 +49,7 @@ class FreeCourse(models.Model):
     # course_type = models.CharField(max_length=5, choices=free_paid)
     updated_on = models.DateTimeField(auto_now=True)
     tags = models.CharField(max_length=200, unique=True)
+    short_disc = models.TextField(max_length=600)
     discription = models.TextField(max_length=10000)
     created_day = models.CharField(null=False, max_length=4)
     created_month = models.CharField(null=False, max_length=40)
@@ -91,7 +92,7 @@ class FreeLesson(models.Model):
     course = models.ForeignKey(FreeCourse, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=650, unique=True)
     title = models.CharField(max_length=600, null=False)
-    youtube_url = models.CharField(max_length=100,null=False)
+    dropbox_url = models.CharField(max_length=100,null=False)
     discription = models.TextField(max_length=10000, null=False)
     
 

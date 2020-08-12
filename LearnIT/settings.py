@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.google',
     'learncodex.apps.LearncodexConfig',
     'django_summernote',
 ]
@@ -145,23 +145,25 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR,'/static/')
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        'APP': {
-            'client_id': '798191126419-d8n38i1sgl3rql2v5il6l7f3k00cuvjm.apps.googleusercontent.com',
-            'secret': 'zU52DpjBaq46Ge1Kaazh-qei',
-            'key': 'AIzaSyAViHONWckfLzHpgfBazX_birXa2gSmr8A'
-        }
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         # For each OAuth based provider, either add a ``SocialApp``
+#         # (``socialaccount`` app) containing the required client
+#         # credentials, or list them here:
+#         'APP': {
+#             'client_id': '798191126419-d8n38i1sgl3rql2v5il6l7f3k00cuvjm.apps.googleusercontent.com',
+#             'secret': 'zU52DpjBaq46Ge1Kaazh-qei',
+#             'key': 'AIzaSyAViHONWckfLzHpgfBazX_birXa2gSmr8A'
+#         }
+#     }
+# }
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

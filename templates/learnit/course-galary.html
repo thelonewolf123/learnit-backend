@@ -12,16 +12,16 @@ LearnIT | Course galary
 
 {% block content %}
 
-<nav aria-label="breadcrumb">
+<!-- <nav aria-label="breadcrumb">
     <ol class="breadcrumb" style="margin-bottom: 0px; background-color: whitesmoke; border-radius: 0px;">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
         <li class="breadcrumb-item"><a href="#">Library</a></li>
         <li class="breadcrumb-item active">Data</li>
     </ol>
-</nav>
+</nav> -->
 
 <div class="row content">
-    <div class="col-md-9 m-0 p-0">
+    <div class="col-md-9 m-0 p-3">
         <div class="row">
             {% if paid %}
             <video id="player" class="img-fluid w-100" playsinline controls data-poster="/path/to/poster.jpg">
@@ -38,7 +38,7 @@ LearnIT | Course galary
             </video>
             {% else %}
             <video controls="controls" id="player">
-                <source type="video/mp4" src="https://www.googleapis.com/drive/v3/files/1sBSUf2oD4XcJpUgnMdh3YRZRkABmtwzp?key=AIzaSyAViHONWckfLzHpgfBazX_birXa2gSmr8A&alt=media">
+                <source type="video/mp4" src="{{ lesson.dropbox_url }}">
             </video>
             {% endif %}
         </div>
@@ -49,7 +49,7 @@ LearnIT | Course galary
                     <div class="row">
                         <div class="col-10 pt-2 pl-5">
                             <h5>
-                                Development environment setup
+                                {{ lesson.title }}
                             </h5>
                         </div>
                         <div class="col-2 pt-2">
@@ -61,30 +61,10 @@ LearnIT | Course galary
         </div>
         <div class="row p-5" id="discription">
 
-            <h3 class="title">Title</h3>
+            <h3 class="title">{{ lesson.title }}</h3>
             <div class="container">
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, cupiditate ducimus. Saepe
-                    officia voluptatibus et laudantium voluptate hic, qui odio libero quae debitis dolorem. Facilis,
-                    enim autem nobis voluptates assumenda provident aperiam, eum possimus suscipit tempora
-                    laudantium esse nisi distinctio delectus. Eligendi cumque sapiente quam asperiores odit? Sed
-                    nisi voluptates dolorum nam illo consequuntur, aperiam impedit porro! Ab, porro necessitatibus
-                    at quidem dolorem amet. Laboriosam a nostrum modi eveniet nisi, quas corrupti, earum est fugiat
-                    accusamus enim odio dolore hic obcaecati fuga corporis natus provident consequuntur cupiditate!
-                    Ipsum, blanditiis distinctio? Ducimus officia, officiis natus porro quas numquam magni,
-                    voluptate ex et harum dolores, placeat nam ratione modi facere? Ea, facere. Autem dolorem,
-                    doloremque, ut aspernatur illum eum maxime ab porro at perferendis quod voluptatibus. Quos sunt
-                    qui reprehenderit hic possimus ipsam rerum excepturi corporis tempore, minima aut ex, omnis
-                    dignissimos porro dolor. Obcaecati ea officia reprehenderit omnis hic blanditiis harum repellat
-                    nostrum porro adipisci minus asperiores corporis, quisquam, fuga tenetur earum, nobis mollitia
-                    at dolore doloremque similique facere nesciunt. Fugiat, tempora consectetur quos minima,
-                    veritatis modi perferendis delectus laborum iure soluta maiores, sed illo. Accusamus ipsa
-                    quaerat quis, ipsam provident esse tenetur recusandae voluptatem delectus minima natus quos
-                    velit a, laboriosam repellat rem voluptatibus quidem veritatis quod nam qui! Nisi delectus hic
-                    beatae sint nostrum, dolor in similique natus! Aliquam reiciendis dolorem, velit, facilis natus
-                    fugit quaerat impedit maxime qui necessitatibus atque nobis a, sequi culpa molestias perferendis
-                    deserunt exercitationem sapiente quis hic quisquam cupiditate. Repudiandae, totam! Officia,
-                    asperiores voluptatem.
+                    {{ lesson.discription | safe }}
                 </p>
             </div>
             <h3 class="mt-5">
@@ -107,62 +87,17 @@ LearnIT | Course galary
             </div>
         </div>
     </div>
-    <div class="col-md-3 m-0">
-        <ul class="list-group">
+    <div class="col-md-3">
+        <ul class="list-group m-2 mt-3">
             <li class="list-group-item text-center" style="background-color: lightskyblue; color: white;">
                 Course content
             </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
-            <li class="list-group-item list-group-item-action">
-                1. Basics og nural networks
-            </li>
+            {% for lessonx in lessons %}
+            <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lessonx.slug }}" class="list-group-item list-group-item-action">
+                {{ lessonx.title }}
+            </a>
+            {% endfor %}
+
         </ul>
     </div>
 </div>

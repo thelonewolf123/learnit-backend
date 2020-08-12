@@ -8,6 +8,17 @@ LearnIT | Course galary
 {% block header %}
 <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
 <link rel="stylesheet" href="{% static 'learncodex/course_galary.css' %}">
+<style>
+    div.scroll { 
+                margin:4px, 4px; 
+                padding:4px; 
+                width: 500px; 
+                height: 100%; 
+                overflow-x: hidden; 
+                overflow-y: auto; 
+                text-align:justify; 
+            } 
+</style>
 {% endblock %}
 
 {% block content %}
@@ -38,7 +49,7 @@ LearnIT | Course galary
             </video>
             {% else %}
             <video controls="controls" id="player">
-                <source type="video/mp4" src="https://www.googleapis.com/drive/v3/files/1sBSUf2oD4XcJpUgnMdh3YRZRkABmtwzp?key=AIzaSyAViHONWckfLzHpgfBazX_birXa2gSmr8A&alt=media">
+                <source type="video/mp4" src="{{ lesson.dropbox_url }}">
             </video>
             {% endif %}
         </div>
