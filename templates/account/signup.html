@@ -1,21 +1,35 @@
 {% extends "account/base.html" %}
-
+{% load crispy_forms_tags %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
-
+<dev >
+  <dev class="row d-flex justify-content-center">
+  <dev class="login-box" style="width: 350px;">
+      <dev class="col-md-4 col-sx-12 col-xs-12"></dev>
+      <dev class="col-md-4 col-sx-12 col-xs-12">
+          <form method="POST" action="{% url 'account_signup' %}">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Join Today</legend>
+                  {{form | crispy }}
+              </fieldset>
+              <dev class="form-group">
+                  <button class="btn btn-success btn-fluid" type="submit">Submit</button>
+              </dev>
+          </form>
+      </dev>
+      <div class="border-top pt-3">
+              <small class="text-muted ml-2">
+                  Already have an Account ? <a class="ml-2" href="{% url 'account_login' %}">
+                  Log In
+              </a>
+              </small>
+          </div>
+  </dev>
+</dev>
+<dev class="col-md-4 col-sx-12 col-xs-12"></dev>
+</dev>
 {% endblock %}
