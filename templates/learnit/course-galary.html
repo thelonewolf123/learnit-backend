@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block title %}
-LearnIT | Course galary
+{{ lesson.title }} | LearnIT
 {% endblock %}
 
 {% block header %}
 <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
-<link rel="stylesheet" href="{% static 'learncodex/course_galary.css' %}">
+<link rel="stylesheet" href="{% static 'learnit/css/course_galary.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -38,31 +38,26 @@ LearnIT | Course galary
             </video>
             {% else %}
             <video controls="controls" id="player">
-                <source type="video/mp4" src="{{ lesson.dropbox_url }}">
+                <source type="video/mp4" src="{{ lesson.dropbox_url }}" size="720">
             </video>
             {% endif %}
         </div>
         <div class="row">
-            <div class="card w-100" data-toggle="collapse" data-target="#discription" aria-expanded="false"
-                aria-controls="discription">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-10 pt-2 pl-5">
-                            <h5>
-                                {{ lesson.title }}
-                            </h5>
-                        </div>
-                        <div class="col-2 pt-2">
-                            <i class="fas fa-chevron-circle-down" style="text-align: right;"></i>
-                        </div>
+            <div class="p-1 m-2">
+                <h2 class="title">{{ lesson.title }}</h2>
+                <div class="p-2">
+                    <div class="d-flex justify-content-space-between">
+                            <button class="feedback m-2 d-inline">Feedback</button>
+                            <button class="feedback m-2 d-inline" data-toggle="collapse" data-target="#discription"
+                                aria-expanded="false" aria-controls="discription">Discription</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row p-5" id="discription">
 
-            <h3 class="title">{{ lesson.title }}</h3>
-            <div class="container">
+            <h3 class="disc-title">Discription</h3>
+            <div class="container discription">
                 <p>
                     {{ lesson.discription | safe }}
                 </p>
@@ -90,10 +85,11 @@ LearnIT | Course galary
     <div class="col-md-3">
         <ul class="list-group m-2 mt-3">
             <li class="list-group-item text-center" style="background-color: lightskyblue; color: white;">
-                Course content
+                <strong>Course content</strong>
             </li>
             {% for lessonx in lessons %}
-            <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lessonx.slug }}" class="list-group-item list-group-item-action">
+            <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lessonx.slug }}"
+                class="list-group-item list-group-item-action">
                 {{ lessonx.title }}
             </a>
             {% endfor %}
@@ -107,14 +103,4 @@ LearnIT | Course galary
 <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
 <script src="{% static 'learncodex/js/course_galary.js' %}"></script>
 <script src="https://cdn.plyr.io/3.6.2/demo.js"></script>
-
-<script>
-    const player = new Plyr('#player', {
-        title: 'Example Title',
-        settings : ['captions', 'quality', 'speed', 'loop'],
-        quality : { default: 576, options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240] }
-        
-    });
-</script>
-
 {% endblock %}

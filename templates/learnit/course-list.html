@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block title %}
+{% if tagx %}
+Courses with tag {{ tagx }}
+{% elif catx %}
+Courses with category {{ catx }}
+{% elif searchx %}
+Results for {{ searchx }}
+{% else %}
 LearnIT | Courses
+{% endif %}
 {% endblock %}
 
 
@@ -13,9 +21,9 @@ LearnIT | Courses
 
 {% block content %}
 <div class="d-xs-flex d-sm-flex d-md-flex d-lg-none d-xl-none search-form-sm">
-    <form class="form-inline d-flex justify-content-center md-form form-sm primary mt-2" style="color: white;">
+    <form method="GET" action="{% url 'course-search' %}" class="form-inline d-flex justify-content-center md-form form-sm primary mt-2" style="color: white;">
         <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
-        <i class="fas fa-search" style="color: white;" aria-hidden="true"></i>
+        <i type="submit" class="fas fa-search" style="color: white;" aria-hidden="true"></i>
         <select class="form-control" id="exampleFormControlSelect1">
             {% for category in categories %}
             <option value="{{ category.name }}">{{ category.name }}</option>
@@ -27,9 +35,9 @@ LearnIT | Courses
 </div>
 
 <div class="d-none d-sm-none d-lg-flex search-form">
-    <form action="#" class="form-inline">
-        <input type="text" name="search" class="form-control" placeholder="Enter your search term" id="search-input">
-        <button class="btn btn-success search-btn m-0">
+    <form method="GET" action="{% url 'course-search' %}" class="form-inline">
+        <input type="text" name="s" class="form-control" placeholder="Enter your search term" id="search-input">
+        <button type="submit" class="btn btn-success search-btn m-0">
             Search
         </button>
     </form>
@@ -43,9 +51,9 @@ LearnIT | Courses
 
             <ul class="list-group">
                 {% for category in categories %}
-                <li class="list-group-item list-group-item-action active">
+                <a href="{% url 'course-category' %}?c={{ category.name }}" class="list-group-item list-group-item-action">
                     {{ category.name }}
-                </li>
+                </a>
                 {% endfor %}
             </ul>
             <h3 class="text-center mt-2">
@@ -55,7 +63,7 @@ LearnIT | Courses
             <ul class="list-group">
 
                 {% for tag in tags %}
-                <li class="list-group-item list-group-item-action">
+                <la href="{% url 'course-tag' %}?c={{ tag.name }}" class="list-group-item list-group-item-action">
                     {{ tag.name }}
                 </li>
                 {% endfor %}
@@ -65,8 +73,16 @@ LearnIT | Courses
         <div class="col-md-9">
             <div class="container">
                 <div class="m-4 index-title ">
-                    <h2 class="text-center">
+                    <h2 class="text-center course-title">
+                        {% if tagx %}
+                        Courses with tag {{ tagx }}
+                        {% elif catx %}
+                        Courses with category {{ catx }}
+                        {% elif searchx %}
+                        Results for {{ searchx }}
+                        {% else %}
                         Available courses
+                        {% endif %}
                     </h2>
                 </div>
                 <ul class="list-group">

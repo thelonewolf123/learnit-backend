@@ -102,5 +102,50 @@ def my_courses(request):
         
     return render(request, 'learnit/my-courses.html',context=context)
 
+def course_search(request):
+    context = {}
+    search = request.GET['s']
+    try:
+        context['courses'] = FreeCourse.objects.filter(title__icontains=search)
+        context['categories'] = Category.objects.all()
+        context['tags'] = Tag.objects.all()
+        context['searchx'] = search
+    except Exception as e:
+        print(e)
+        raise Http404
+
+    return render(request, 'learnit/course-list.html', context=context)
+
+def course_category(request):
+    context = {}
+    category = request.GET['c']
+    try:
+        cat = Category.objects.get(name=category)
+        context['courses'] = FreeCourse.objects.filter(category=cat)
+        context['categories'] = Category.objects.all()
+        context['tags'] = Tag.objects.all()
+        context['catx'] = category
+    except:
+        raise Http404
+
+    return render(request, 'learnit/course-list.html', context=context)
+
+def course_tag(request):
+    context = {}
+    tag = request.GET['t']
+    try:
+        context['courses'] = FreeCourse.objects.filter(tag__icontains=tag)
+        context['categories'] = Category.objects.all()
+        context['tags'] = Tag.objects.all()
+        context['tagx'] = tag
+    except:
+        raise Http404
+
+    return render(request, 'learnit/course-list.html', context=context)
+
+def ask_instructor(request):
+
+    pass
+
 def profile(request):
     return HttpResponse("Peofile of "+str(request.user))

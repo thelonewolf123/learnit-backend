@@ -94,6 +94,10 @@ class FreeLesson(models.Model):
     title = models.CharField(max_length=600, null=False)
     dropbox_url = models.CharField(max_length=100,null=False)
     discription = models.TextField(max_length=10000, null=False)
+
+    def __str__(self):
+
+        return f'{self.title} ({self.course.title})'
     
 
     def _get_unique_slug(self):

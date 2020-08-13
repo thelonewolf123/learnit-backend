@@ -1,3 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Chilanka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Ubuntu+Condensed&display=swap');
+
 p {
     text-align: justify;
+}
+
+video {
+    border: solid;
+    border-width: 1px;
+}
+
+.title {
+    font-family: 'Chilanka', cursive;
+}
+
+.feedback{
+    border: solid;
+    padding:5px 20px;
+    border-width: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 2px 2px;
+    border-radius: 20px;
+    height: 40px;
+}
+
+.discription{
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.disc-title {
+    font-family: 'Patrick Hand', cursive;
+}
+
+.user {
+    font-size: 35px;
+    text-align: center;
 }
