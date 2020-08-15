@@ -8,6 +8,8 @@
 {% block header %}
 <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+<link rel="stylesheet" href="{% static 'learnit/css/course_galary.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3.9.0/notyf.min.css">
 {% endblock %}
 
 {% block content %}
@@ -20,8 +22,8 @@
     </ol>
 </nav> -->
 
-<div class="row content">
-    <div class="col-md-9 m-0 p-3">
+<div class="row content mt-3">
+    <div class="col-md-8 m-0 p-3">
         <div class="row">
             {% if paid %}
             <video id="player" class="img-fluid w-100" playsinline controls data-poster="/path/to/poster.jpg">
@@ -55,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="row p-5" id="discription">
+        <div class="row p-5 collapse dont-collapse-sm" id="discription">
 
             <h3 class="disc-title">Discription</h3>
             <div class="container discription">
@@ -73,7 +75,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <form action="{% url 'course-ask' %}" method="POST" class="form-group p-2">
+                            {% csrf_token %}
                             <input type="text" name="subject" class="form-control m-2" placeholder="Subject">
+                            <input type="hidden" name="course" value="{{ course.slug }}">
+                            <input type="hidden" name="lesson" value="{{ lesson.slug }}">
                             <textarea type="text" name="question" class="form-control m-2"
                                 placeholder="Ask your doubt,"></textarea>
                             <button type="submit" class="btn btn-primary m-2">Submit</button>
@@ -83,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <ul class="list-group m-2 mt-3">
             <li class="list-group-item text-center" style="background-color: lightskyblue; color: white;">
                 <strong>Course content</strong>
@@ -128,4 +133,46 @@
 <script>
     hljs.initHighlightingOnLoad();
 </script>
+
+{% if messages %}
+<script src="https://cdn.jsdelivr.net/npm/notyf@3.9.0/notyf.min.js" ></script>
+<script>
+const notyf = new Notyf({
+  duration: 1000,
+  position: {
+    x: 'right',
+    y: 'top',
+  },
+  types: [
+    {
+      type: 'warning',
+      background: 'orange',
+      icon: {
+        className: 'material-icons',
+        tagName: 'i',
+        text: 'warning'
+      }
+    },
+    {
+      type: 'success',
+      duration: 3000,
+      dismissible: true
+    },
+    {
+      type: 'error',
+      duration: 3000,
+      dismissible: true
+    }
+  ]
+});
+
+{% for message in messages %}
+notyf.{{ message.tags }}({
+  message: '{{ message }}',
+})
+
+{% endfor %}
+
+</script>
+{% endif %}
 {% endblock %}

@@ -16,8 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
 from django.conf.urls.static import static
 from learncodex import views
+from learncodex.sitemap import StaticViewSitemap, CourseViewSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'course' : CourseViewSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +32,6 @@ urlpatterns = [
     path('',include('learncodex.urls')),
     path('accounts/profile/',views.profile,name='ptofile'),
     path('summernote/', include('django_summernote.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
     'learncodex.apps.LearncodexConfig',
+    'django.contrib.sitemaps',
     'django_summernote',
     'crispy_forms',
 ]
@@ -160,10 +161,12 @@ STATIC_ROOT = os.path.join(BASE_DIR,'/static/')
 #     }
 # }
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 
@@ -179,3 +182,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+ADMIN_EMAIL_ADDRESS = [
+    'cyberkrypts@gmail.com'
+]

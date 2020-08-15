@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
-from django.http import Http404, HttpResponse, HttpResponseServerError
+from django.shortcuts import render, redirect, reverse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .models import FreeCourse, FreeLesson, Subscription, Review, Category, Tag
 
@@ -144,8 +146,26 @@ def course_tag(request):
     return render(request, 'learnit/course-list.html', context=context)
 
 def ask_instructor(request):
+    try:
+        course = request.POST['course']
+        lesson = request.POST['lesson']
+        subject = request.POST['subject']
+        message = request.POST['question']
+        user = request.user.email
+        mail_subject = f'[Learning platform] {subject}'
+        mail_body = f'User Email: {user}\nCourse: {course}\nLesson: {lesson}\n\n{message}'
+        send_mail(mail_subject,mail_body,settings.EMAIL_HOST_USER,settings.ADMIN_EMAIL_ADDRESS)
 
-    pass
+        messages.success(request,'Your message has ben sent, soon the admin will contact you.')
+
+        return HttpResponseRedirect(reverse('course-learn',args=(course,))+"?lesson="+lesson)
+    
+    except Exception as e:
+        print(e)
+        raise Http404
+
+    
+
 
 def profile(request):
     return HttpResponse("Peofile of "+str(request.user))

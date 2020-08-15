@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,34 +16,52 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'learnit/css/course_galary.css' %}">
   {% block header %}
 
   {% endblock %}
 
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg shadow p-3 bg-white rounded sticky-top">
-    <a class="navbar-brand" href="#">CyberKrypts</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-white p-3 sticky-top">
+
+  <!-- Additional container -->
+  <div class="container">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'logo.png' %}" width="45" height="45" class="d-inline-block align-center mx-2" alt="">
+      <strong>
+        CyberKrypts
+      </strong>
+    </a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse pull-right" id="navbarNavDropdown">
-      <ul class="nav navbar-nav nav-flex-icons ml-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">Home
+            <span class="sr-only">(current)</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'courses-list' %}">Courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="#">Contact Us</a>
         </li>
+        <!-- Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">Account</a>
@@ -57,96 +76,109 @@
             {% endif %}
           </div>
         </li>
+
       </ul>
-    </div>
-  </nav>
+      <!-- Links -->
 
-  {% block content %}
-
-  {% endblock %}
-
-  <div style="height: 50px;"></div>
-  <div class="row p-3 text-left" style="background-color: lightblue;">
-    <div class="col-md-3 offset-md-1">
-      <div>
-        <strong>
-          Cour company
-        </strong>
-      </div>
-      <div>
-        <a href="#">Services</a>
-      </div>
-      <div>
-        <a href="#">About Us</a>
-      </div>
-      <div>
-        <a href="#">Contact Us</a>
-      </div>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-md btn-outline-default my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
-    <div class="col-md-3 offset-md-1">
-      <div>
-        <strong>
-          CyberKrypts Network
-        </strong>
-      </div>
-      <div>
-        <a href="#">Whatsapp group</a>
-      </div>
-      <div>
-        <a href="#">FaceBook group</a>
-      </div>
-      <div>
-        <a href="#">Telegram Group</a>
-      </div>
-      <div>
-        <a href="#">Our Forum</a>
-      </div>
+    <!-- Collapsible content -->
+
+  </div>
+  <!-- Additional container -->
+
+</nav>
+<!--/.Navbar-->
+
+{% block content %}
+
+{% endblock %}
+
+<div style="height: 50px;"></div>
+<div class="row p-3 text-left" style="background-color: lightblue;">
+  <div class="col-md-3 offset-md-1">
+    <div>
+      <strong>
+        Cour company
+      </strong>
     </div>
-    <div class="col-md-3 offset-md-1">
-      <div>
-        <strong>
-          Our products
-        </strong>
-      </div>
-      <div>
-        <a href="#">EFI editor</a>
-      </div>
-      <div>
-        <a href="#">Bulk Email</a>
-      </div>
-      <div>
-        <a href="#">Automate WA</a>
-      </div>
+    <div>
+      <a href="#">Services</a>
+    </div>
+    <div>
+      <a href="#">About Us</a>
+    </div>
+    <div>
+      <a href="#">Contact Us</a>
     </div>
   </div>
-  <div class='footer footer-primary bg-primary text-center' style="color: white;">
-
-    <footer>
-      <div class="form inline-form">
-        <a href="#facebook" class="social"><i class="fa fa-facebook"></i> </a>
-        <a href="#instagram" class="social"><i class="fa fa-instagram"></i> </a>
-        <a href="#telegram" class="social"><i class="fa fa-telegram"></i> </a>
-      </div>
-      <div class='copyright text-center'>
-        &copy; LearnIT - 2020
-      </div>
-    </footer>
+  <div class="col-md-3 offset-md-1">
+    <div>
+      <strong>
+        CyberKrypts Network
+      </strong>
+    </div>
+    <div>
+      <a href="#">Whatsapp group</a>
+    </div>
+    <div>
+      <a href="#">FaceBook group</a>
+    </div>
+    <div>
+      <a href="#">Telegram Group</a>
+    </div>
+    <div>
+      <a href="#">Our Forum</a>
+    </div>
   </div>
-  <!-- JQuery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
-  </script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
-  </script>
+  <div class="col-md-3 offset-md-1">
+    <div>
+      <strong>
+        Our products
+      </strong>
+    </div>
+    <div>
+      <a href="#">EFI editor</a>
+    </div>
+    <div>
+      <a href="#">Bulk Email</a>
+    </div>
+    <div>
+      <a href="#">Automate WA</a>
+    </div>
+  </div>
+</div>
+<div class='footer footer-primary bg-primary text-center' style="color: white;">
 
-  {% block script %}
+  <footer>
+    <div class="form inline-form">
+      <a href="#facebook" class="social"><i class="fa fa-facebook"></i> </a>
+      <a href="#instagram" class="social"><i class="fa fa-instagram"></i> </a>
+      <a href="#telegram" class="social"><i class="fa fa-telegram"></i> </a>
+    </div>
+    <div class='copyright text-center'>
+      &copy; LearnIT - 2020
+    </div>
+  </footer>
+</div>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+</script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js">
+</script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
+</script>
 
-  {% endblock %}
+{% block script %}
+
+{% endblock %}
 
 </body>
 

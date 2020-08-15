@@ -21,74 +21,80 @@
 <body>
 
   <!--Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white mb-3 p-2 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-white p-3 sticky-top mb-5">
 
-    <!-- Additional container -->
-    <div class="container">
+  <!-- Additional container -->
+  <div class="container">
 
-      <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">CyberKrypts</a>
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'logo.png' %}" width="45" height="45" class="d-inline-block align-center mx-2" alt="">
+      <strong>
+        CyberKrypts
+      </strong>
+    </a>
 
-      <!-- Collapse button -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <!-- Collapsible content -->
-      <div class="collapse navbar-collapse" id="basicExampleNav">
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
 
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'index' %}">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">Account</a>
-            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-              {% if request.user.is_authenticated %}
-              <a class="dropdown-item" href="#">My account</a>
-              <a class="dropdown-item" href="{% url 'my-courses' %}">My cources</a>
-              <a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a>
-              {% else %}
-              <a class="dropdown-item" href="{% url 'account_login' %}">Log In</a>
-              <a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a>
-              {% endif %}
-            </div>
-          </li>
-
-        </ul>
-        <!-- Links -->
-
-        <form class="form-inline">
-          <div class="md-form my-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'courses-list' %}">Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Account</a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+            {% if request.user.is_authenticated %}
+            <a class="dropdown-item" href="#">My account</a>
+            <a class="dropdown-item" href="{% url 'my-courses' %}">My cources</a>
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a>
+            {% else %}
+            <a class="dropdown-item" href="{% url 'account_login' %}">Log In</a>
+            <a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a>
+            {% endif %}
           </div>
-        </form>
-      </div>
-      <!-- Collapsible content -->
+        </li>
 
+      </ul>
+      <!-- Links -->
+
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-md btn-outline-default my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
-    <!-- Additional container -->
+    <!-- Collapsible content -->
 
-  </nav>
-  <!--/.Navbar-->
+  </div>
+  <!-- Additional container -->
+
+</nav>
+<!--/.Navbar-->
 
 
   {% block body %}
 
-  {% if messages %}
+  <!-- {% if messages %}
   <div>
     <strong>Messages:</strong>
     <ul>
@@ -97,9 +103,9 @@
       {% endfor %}
     </ul>
   </div>
-  {% endif %}
+  {% endif %} -->
 
-  <div>
+  <!-- <div>
     <strong>Menu:</strong>
     <ul>
       {% if user.is_authenticated %}
@@ -110,18 +116,16 @@
       <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
       {% endif %}
     </ul>
-  </div>
-  <div class="container">
-    {% block content %}
-    {% endblock %}
-  </div>
+  </div> -->
+  {% block content %}
+  {% endblock %}
   {% endblock %}
   {% block extra_body %}
   {% endblock %}
 
   <div style="height: 50px;"></div>
-  <div class="row p-3 text-left" style="background-color: lightblue;">
-    <div class="col-md-3 offset-md-1">
+  <div class="row p-3 text-center" style="background-color: lightblue;">
+    <div class="col-md-3">
       <div>
         <strong>
           Cour company
@@ -197,8 +201,5 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
   </script>
-
-
 </body>
-
 </html>

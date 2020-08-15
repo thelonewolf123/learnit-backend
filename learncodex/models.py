@@ -4,6 +4,7 @@ from datetime import datetime
 from django.utils.text import slugify
 from django.dispatch import receiver
 from django.db.models.signals import post_delete
+from django.shortcuts import reverse
 from django.core.validators import FileExtensionValidator, MaxValueValidator, MinValueValidator
 
 
@@ -55,6 +56,7 @@ class FreeCourse(models.Model):
     created_month = models.CharField(null=False, max_length=40)
     created_year = models.CharField(null=False, max_length=5)
 
+
     class Meta:
         ordering = ['-id']
 
@@ -75,6 +77,11 @@ class FreeCourse(models.Model):
                      7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
 
         return monthDict[int(month)]
+
+
+
+    def get_absolute_url(self):
+        return reverse('course-detail',args=(self.slug,))
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -173,6 +180,10 @@ class Subscription(models.Model):
     course = models.ForeignKey(FreeCourse, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+
+        return self.user.username
 
 
 # class Payment(models.Model):
