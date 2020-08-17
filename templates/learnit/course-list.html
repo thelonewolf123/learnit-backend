@@ -15,24 +15,11 @@ LearnIT | Courses
 
 
 {% block header %}
-<link rel="stylesheet" href="{% static 'learncodex/index.css' %}">
+<link rel="stylesheet" href="{% static 'learnit/css/index.css' %}">
 {% endblock %}
 
 
 {% block content %}
-<div class="d-xs-flex d-sm-flex d-md-flex d-lg-none d-xl-none search-form-sm">
-    <form method="GET" action="{% url 'course-search' %}" class="form-inline d-flex justify-content-center md-form form-sm primary mt-2" style="color: white;">
-        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
-        <i type="submit" class="fas fa-search" style="color: white;" aria-hidden="true"></i>
-        <select class="form-control" id="exampleFormControlSelect1">
-            {% for category in categories %}
-            <option value="{{ category.name }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
-        
-    </form>
-
-</div>
 
 <div class="d-none d-sm-none d-lg-flex search-form">
     <form method="GET" action="{% url 'course-search' %}" class="form-inline">
@@ -56,7 +43,7 @@ LearnIT | Courses
                 </a>
                 {% endfor %}
             </ul>
-            <h3 class="text-center mt-2">
+            <!-- <h3 class="text-center mt-2">
                 Tags
             </h3>
 
@@ -67,19 +54,17 @@ LearnIT | Courses
                     {{ tag.name }}
                 </li>
                 {% endfor %}
-            </ul>
+            </ul> -->
 
         </div>
         <div class="col-md-9">
             <div class="container">
                 <div class="m-4 index-title ">
                     <h2 class="text-center course-title">
-                        {% if tagx %}
-                        Courses with tag {{ tagx }}
-                        {% elif catx %}
-                        Courses with category {{ catx }}
+                        {% if catx %}
+                        Courses with category <strong>{{ catx }}</strong> 
                         {% elif searchx %}
-                        Results for {{ searchx }}
+                        Results for <strong>{{ searchx }}</strong> 
                         {% else %}
                         Available courses
                         {% endif %}

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
     'learncodex.apps.LearncodexConfig',
+    'blogx.apps.BlogxConfig',
     'django.contrib.sitemaps',
     'django_summernote',
     'crispy_forms',

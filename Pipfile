@@ -12,6 +12,7 @@ django-allauth = "*"
 pillow = "*"
 django-storages = "*"
 zappa = "*"
+bleach = "*"
 
 [requires]
 python_version = "3.8"

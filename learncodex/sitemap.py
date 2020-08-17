@@ -6,7 +6,7 @@ from .models import FreeCourse
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['index']
+        return ['index','about','contact']
 
     def location(self, item):
         return reverse(item)

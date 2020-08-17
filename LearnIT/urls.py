@@ -18,20 +18,24 @@ from django.urls import path,include
 from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
 from django.conf.urls.static import static
-from learncodex import views
+from . import views
 from learncodex.sitemap import StaticViewSitemap, CourseViewSitemap
+from blogx.sitemap import BlogViewSitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
     'course' : CourseViewSitemap,
+    'blog' : BlogViewSitemap,
 }
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('',include('learncodex.urls')),
-    path('accounts/profile/',views.profile,name='ptofile'),
+    path('blog/',include('blogx.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('about/',views.about,name='about'),
+    path('contact/',views.contact,name='contact'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
