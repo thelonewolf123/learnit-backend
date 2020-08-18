@@ -83,6 +83,15 @@ class FreeCourse(models.Model):
     def get_absolute_url(self):
         return reverse('course-detail',args=(self.slug,))
 
+
+    def seo_discription(self):
+
+        if len(self.short_disc) > 155:
+
+            return self.short_disc[:150] + '...'
+        
+        return self.short_disc
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self._get_unique_slug()

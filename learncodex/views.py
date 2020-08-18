@@ -9,8 +9,9 @@ from .models import FreeCourse, FreeLesson, Subscription, Review, Category, Tag
 
 
 def index(request):
-
-    return render(request, 'learnit/home.html')
+    context = {}
+    context['home_nav'] = 'active'
+    return render(request, 'learnit/home.html',context=context)
 
 
 def courses(request):
@@ -20,6 +21,7 @@ def courses(request):
     context['courses'] = FreeCourse.objects.all()
     context['categories'] = Category.objects.all()
     context['tags'] = Tag.objects.all()
+    context['course_nav'] = 'active'
 
     return render(request, 'learnit/course-list.html', context=context)
 
@@ -132,18 +134,18 @@ def course_category(request):
 
     return render(request, 'learnit/course-list.html', context=context)
 
-def course_tag(request):
-    context = {}
-    tag = request.GET['t']
-    try:
-        context['courses'] = FreeCourse.objects.filter(tag__icontains=tag)
-        context['categories'] = Category.objects.all()
-        context['tags'] = Tag.objects.all()
-        context['tagx'] = tag
-    except:
-        raise Http404
+# def course_tag(request):
+#     context = {}
+#     tag = request.GET['t']
+#     try:
+#         context['courses'] = FreeCourse.objects.filter(tag__icontains=tag)
+#         context['categories'] = Category.objects.all()
+#         context['tags'] = Tag.objects.all()
+#         context['tagx'] = tag
+#     except:
+#         raise Http404
 
-    return render(request, 'learnit/course-list.html', context=context)
+#     return render(request, 'learnit/course-list.html', context=context)
 
 def ask_instructor(request):
     try:
@@ -164,8 +166,6 @@ def ask_instructor(request):
         print(e)
         raise Http404
 
-    
-
 
 def profile(request):
-    return HttpResponse("Peofile of "+str(request.user))
+    return HttpResponse("Peofile of "+str(request.user.email))

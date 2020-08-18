@@ -6,139 +6,77 @@ Blog | CyberKrypts
 
 
 {% block content %}
-  <!-- Page Content -->
-  <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">CyberKrypt's Blog
-      <!-- <small>Art of hacking</small> -->
-    </h1>
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">CyberKrypt's Blog
+    <!-- <small>Art of hacking</small> -->
+  </h1>
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Blog</li>
-    </ol>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{% url 'index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Blog</li>
+  </ol>
 
-    <div class="row">
+  <div class="row">
 
-      <!-- Blog Entries Column -->
-      <div class="col-md-8">
-        {% for post in posts %}
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="{{ post.title_img.url }}" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <p class="card-text">{{ post.title_dics }}</p>
-            <a href="{% url 'single_blog' id=post.slug %}" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on {{ post.created_month }} {{ post.create_day }}, {{ post.created_year }} by
-            <a href="#">{{ post.author.name }}</a>
-          </div>
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+      {% for post in posts %}
+      <!-- Blog Post -->
+      <div class="card mb-4">
+        <img class="card-img-top" src="{{ post.title_img.url }}" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-text">{{ post.title_dics }}</p>
+          <a href="{% url 'single_blog' id=post.slug %}" class="btn btn-primary">Read More &rarr;</a>
         </div>
-        {% endfor %}
-        
-        <!-- Pagination -->
-        <nav aria-label="Page navigation my-4" class="pagination_area">
-          <ul class="pagination">
-            {% if is_paginated %}
-
-            {% if page_obj.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page=1">First</a> </li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-            </li>
-            {% endif %}
-
-            {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-            <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}.</a></li>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}.</a></li>
-            {% endif %}
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-            </li>
-            {% endif %}
-            {% endif %}
-          </ul>
-
-        </nav>
-
+        <div class="card-footer text-muted">
+          Posted on {{ post.created_month }} {{ post.create_day }}, {{ post.created_year }} by
+          <a href="#">{{ post.author.name }}</a>
+        </div>
       </div>
+      {% endfor %}
 
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
+      <!-- Pagination -->
+      <nav aria-label="Page navigation my-4" class="pagination_area">
+        <ul class="pagination">
+          {% if is_paginated %}
 
-        <!-- Search Widget -->
-        <div class="card mb-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <form method="GET" action="{% url 'search_blog' %}" class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-            </form>
-          </div>
-        </div>
+          {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page=1">First</a> </li>
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          </li>
+          {% endif %}
 
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+          {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+          <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}.</a></li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}.</a></li>
+          {% endif %}
+          {% endfor %}
 
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new
-            Bootstrap 4 card containers!
-          </div>
-        </div>
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+          </li>
+          {% endif %}
+          {% endif %}
+        </ul>
 
-      </div>
+      </nav>
 
     </div>
-    <!-- /.row -->
-
+    {% include 'blogx/sidebar.html' %}
   </div>
-  <!-- /.container -->
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
 
 {% endblock %}

@@ -76,6 +76,14 @@ class Post(models.Model):
 
         return reverse('single_blog',args=(self.slug,))
 
+    def seo_discription(self):
+
+        if len(self.title_dics) > 155:
+
+            return self.title_dics[:150] + '...'
+        
+        return self.title_dics
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self._get_unique_slug()

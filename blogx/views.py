@@ -32,7 +32,7 @@ def blog_list(request):
     context['page_obj'] = page_obj
     context['categories'] = categories
     context['tags'] = Tag.objects.all()
-
+    context['blog_nav'] = 'active'
     if posts.count() > 5:
         context['is_paginated'] = True
 

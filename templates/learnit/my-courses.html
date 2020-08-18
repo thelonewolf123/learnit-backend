@@ -43,23 +43,11 @@ LearnIT | Courses
 
             <ul class="list-group">
                 {% for category in categories %}
-                <li class="list-group-item list-group-item-action active">
+                <a href="{% url 'course-category' %}?c={{ category.name }}" class="list-group-item list-group-item-action">
                     {{ category.name }}
-                </li>
+                </a>
                 {% endfor %}
             </ul>
-            <!-- <h3 class="text-center mt-2">
-                Tags
-            </h3>
-
-            <ul class="list-group">
-
-                {% for tag in tags %}
-                <li class="list-group-item list-group-item-action">
-                    {{ tag.name }}
-                </li>
-                {% endfor %}
-            </ul> -->
 
         </div>
         <div class="col-md-9">
@@ -74,7 +62,7 @@ LearnIT | Courses
                     <li class="card m-1 p-2 hoverable">
                         <div class="row course-item">
                             <div class="col-md-3">
-                                <img src="/media/{{ sub.course.title_img }}" alt="thumbnail" class="img-thumbnail">
+                                <img src="{{ sub.course.title_img.url }}" alt="thumbnail" class="img-thumbnail">
                             </div>
                             <div class="col-md-9">
                                 <h3 class="course-title">
