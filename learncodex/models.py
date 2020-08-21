@@ -56,7 +56,6 @@ class FreeCourse(models.Model):
     created_month = models.CharField(null=False, max_length=40)
     created_year = models.CharField(null=False, max_length=5)
 
-
     class Meta:
         ordering = ['-id']
 
@@ -78,18 +77,15 @@ class FreeCourse(models.Model):
 
         return monthDict[int(month)]
 
-
-
     def get_absolute_url(self):
-        return reverse('course-detail',args=(self.slug,))
-
+        return reverse('course-detail', args=(self.slug,))
 
     def seo_discription(self):
 
         if len(self.short_disc) > 155:
 
             return self.short_disc[:150] + '...'
-        
+
         return self.short_disc
 
     def save(self, *args, **kwargs):
@@ -103,18 +99,26 @@ class FreeCourse(models.Model):
         super().save(*args, **kwargs)
 
 
+class CourseSection(models.Model):
+    course = models.ForeignKey(FreeCourse, on_delete=models.CASCADE)
+    title = models.CharField(max_length=600, null=False)
+
+    def __str__(self):
+
+        return self.title
+
+
 class FreeLesson(models.Model):
 
     course = models.ForeignKey(FreeCourse, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=650, unique=True)
     title = models.CharField(max_length=600, null=False)
-    dropbox_url = models.CharField(max_length=100,null=False)
+    dropbox_url = models.CharField(max_length=100, null=False)
     discription = models.TextField(max_length=10000, null=False)
 
     def __str__(self):
 
         return f'{self.title} ({self.course.title})'
-    
 
     def _get_unique_slug(self):
         slug = slugify(self.title)
@@ -130,8 +134,6 @@ class FreeLesson(models.Model):
             self.slug = self._get_unique_slug()
 
         super().save(*args, **kwargs)
-    
-
 
 
 # class Lesson(models.Model):

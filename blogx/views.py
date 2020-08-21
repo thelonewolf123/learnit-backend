@@ -168,12 +168,12 @@ def single_blog(request, id):
             try:
                 Comment.objects.create(name=name, post=post, message=message)
 
-                messages.error(request, "Your comment has been added.")
+                messages.success(request, "Your comment has been added.")
             except Exception as e:
                 print(e)
                 raise Http404
 
-            return redirect('single_blog', slug=id)
+            return redirect('single_blog', id=id)
         else:
             messages.error(request, form.errors)
             context['form'] = form

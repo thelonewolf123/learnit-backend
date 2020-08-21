@@ -10,6 +10,11 @@
   integrity="sha512-JPxjD2t82edI35nXydY/erE9jVPpqxEJ++6nYEoZEpX2TRsmp2FpZuQqZa+wBCen5U16QZOkMadGXHCfp+tUdg=="
   crossorigin="anonymous" />
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+    .content {
+        font-family: 'Varela Round', sans-serif;
+    }
   p {
     text-align: justify;
   }
@@ -53,16 +58,19 @@
       <hr>
 
       <!-- Post Content -->
+      <div class="content">
       {{ post.content | safe }}
+      </div>
       <hr>
 
       <!-- Comments Form -->
       <div class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
-          <form>
+          <form  method="POST" action="{{ post.get_absolute_url }}">
+          {% csrf_token %}
             <div class="form-group">
-              <textarea class="form-control" name="comment" rows="3"></textarea>
+              {{ form.message }}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -70,18 +78,18 @@
       </div>
 
       <!-- Single Comment -->
-      <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+      {% for comment in comments %}
+      <div class="media mb-5">
+        <img class="d-flex mr-3 rounded-circle" src="https://i.stack.imgur.com/l60Hf.png" width="50" height="50" alt="">
         <div class="media-body">
-          <h5 class="mt-0">Commenter Name</h5>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-          vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-          lacinia congue felis in faucibus.
+          <h5 class="mt-0"><strong> {{comment.name}} </strong> </h5>
+          {{ comment.message }}
         </div>
       </div>
+      {% endfor %}
 
       <!-- Comment with nested comments -->
-      <div class="media mb-4">
+      {% comment %} <div class="media mb-4">
         <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
         <div class="media-body">
           <h5 class="mt-0">Commenter Name</h5>
@@ -110,7 +118,7 @@
           </div>
 
         </div>
-      </div>
+      </div> {% endcomment %}
 
     </div>
 
