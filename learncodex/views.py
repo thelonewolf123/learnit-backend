@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -11,17 +12,33 @@ from .models import FreeCourse, FreeLesson, Subscription, Review, Category, Tag
 def index(request):
     context = {}
     context['home_nav'] = 'active'
-    return render(request, 'learnit/home.html',context=context)
+    return render(request, 'learnit/home.html', context=context)
 
 
 def courses(request):
 
     context = {}
+    courses = FreeCourse.objects.all()
+    page_number = request.GET.get('page')
+    paginator = Paginator(courses, 5)
 
-    context['courses'] = FreeCourse.objects.all()
+    categories = Category.objects.all()
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    context['courses'] = page_obj
+    context['page_obj'] = page_obj
     context['categories'] = Category.objects.all()
     context['tags'] = Tag.objects.all()
     context['course_nav'] = 'active'
+
+    if courses.count() > 5:
+        context['is_paginated'] = True
 
     return render(request, 'learnit/course-list.html', context=context)
 
@@ -65,7 +82,7 @@ def course_learning(request, course):
             request, 'To access this course first you need to enroll it.')
         return redirect('course-detail', course=course.slug)
 
-    return render(request, 'learnit/course-galary.html',context=context)
+    return render(request, 'learnit/course-galary.html', context=context)
 
 
 @login_required
@@ -91,9 +108,9 @@ def course_enroll(request, course):
 
 @login_required
 def my_courses(request):
-    context ={}
+    context = {}
     try:
-        user=request.user
+        user = request.user
         subscription = Subscription.objects.filter(user=user)
         context['categories'] = Category.objects.all()
         context['tags'] = Tag.objects.all()
@@ -103,34 +120,74 @@ def my_courses(request):
     except Exception as e:
         print(e)
         raise Http404
-        
-    return render(request, 'learnit/my-courses.html',context=context)
+
+    return render(request, 'learnit/my-courses.html', context=context)
+
 
 def course_search(request):
+
     context = {}
     search = request.GET['s']
     try:
-        context['courses'] = FreeCourse.objects.filter(title__icontains=search)
-        context['categories'] = Category.objects.all()
-        context['tags'] = Tag.objects.all()
-        context['searchx'] = search
+        courses = FreeCourse.objects.filter(title__icontains=search)
     except Exception as e:
         print(e)
         raise Http404
 
+    page_number = request.GET.get('page')
+    paginator = Paginator(courses, 5)
+
+    categories = Category.objects.all()
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    context['courses'] = page_obj
+    context['page_obj'] = page_obj
+    context['categories'] = Category.objects.all()
+    context['tags'] = Tag.objects.all()
+    context['searchx'] = search
+
+    if courses.count() > 5:
+        context['is_paginated'] = True
+
     return render(request, 'learnit/course-list.html', context=context)
 
+
 def course_category(request):
+
     context = {}
     category = request.GET['c']
     try:
-        cat = Category.objects.get(name=category)
-        context['courses'] = FreeCourse.objects.filter(category=cat)
-        context['categories'] = Category.objects.all()
-        context['tags'] = Tag.objects.all()
-        context['catx'] = category
-    except:
+        courses = Category.objects.get(name=category)
+    except Exception as e:
+        print(e)
         raise Http404
+
+    page_number = request.GET.get('page')
+    paginator = Paginator(courses, 5)
+
+    categories = Category.objects.all()
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    context['courses'] = page_obj
+    context['page_obj'] = page_obj
+    context['categories'] = Category.objects.all()
+    context['tags'] = Tag.objects.all()
+    context['catx'] = category
+
+    if courses.count() > 5:
+        context['is_paginated'] = True
 
     return render(request, 'learnit/course-list.html', context=context)
 
@@ -147,6 +204,8 @@ def course_category(request):
 
 #     return render(request, 'learnit/course-list.html', context=context)
 
+
+@login_required
 def ask_instructor(request):
     try:
         course = request.POST['course']
@@ -156,12 +215,14 @@ def ask_instructor(request):
         user = request.user.email
         mail_subject = f'[Learning platform] {subject}'
         mail_body = f'User Email: {user}\nCourse: {course}\nLesson: {lesson}\n\n{message}'
-        send_mail(mail_subject,mail_body,settings.EMAIL_HOST_USER,settings.ADMIN_EMAIL_ADDRESS)
+        send_mail(mail_subject, mail_body, settings.EMAIL_HOST_USER,
+                  settings.ADMIN_EMAIL_ADDRESS)
 
-        messages.success(request,'Your message has ben sent, soon the admin will contact you.')
+        messages.success(
+            request, 'Your message has ben sent, soon the admin will contact you.')
 
-        return HttpResponseRedirect(reverse('course-learn',args=(course,))+"?lesson="+lesson)
-    
+        return HttpResponseRedirect(reverse('course-learn', args=(course,))+"?lesson="+lesson)
+
     except Exception as e:
         print(e)
         raise Http404

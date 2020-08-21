@@ -103,7 +103,7 @@ def category_blog(request):
     if result.count() > 5:
         context['is_paginated'] = True
 
-    return render(request, 'streamer/blog.html', context)
+    return render(request, 'blogx/blog.html', context)
 
 
 def tag_blog(request):
@@ -136,7 +136,7 @@ def tag_blog(request):
     if result.count() > 5:
         context['is_paginated'] = True
 
-    return render(request, 'streamer/blog.html', context)
+    return render(request, 'blogx/blog.html', context)
 
 
 def single_blog(request, id):

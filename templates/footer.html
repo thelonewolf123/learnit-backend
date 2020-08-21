@@ -19,12 +19,12 @@
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                    <h3> Our Media </h3>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li> <a href="#"> eFI </a> </li>
+                        <li> <a href="#"> SW-Techie </a> </li>
+                        <li> <a href="#"> Art Music </a> </li>
+                        <li> <a href="#"> Nithish Techie </a> </li>
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
@@ -40,11 +40,11 @@
                     <h3> Get our newsletter </h3>
                     <ul>
                         <li>
-                            <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center form-control" placeholder="Email ">
+                            <form action="{% url 'news-letter' %}" method="POST" class="input-append newsletter-box text-center">
+                                <input type="text" name="email" class="full text-center form-control" placeholder="Email ">
                                 <button class="btn  bg-secondary" type="button">I'm in <i
                                         class="fa fa-long-arrow-right"> </i> </button>
-                            </div>
+                            </form>
                         </li>
                     </ul>
                     <ul class="social">
@@ -66,4 +66,5 @@
             <div class="clearfix"></div>
         </div>
         <!--/.footer-bottom-->
+    </div>
 </footer>
