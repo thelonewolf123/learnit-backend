@@ -74,14 +74,14 @@ class Post(models.Model):
 
     def get_absolute_url(self):
 
-        return reverse('single_blog',args=(self.slug,))
+        return reverse('single_blog', args=(self.slug,))
 
     def seo_discription(self):
 
         if len(self.title_dics) > 155:
 
             return self.title_dics[:150] + '...'
-        
+
         return self.title_dics
 
     def save(self, *args, **kwargs):
@@ -119,3 +119,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.message
+
+
+class NewsLetter(models.Model):
+
+    email = models.EmailField(null=False, blank=False, max_length=200)
+    uid = models.CharField(max_length=100, null=False, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+
+        return reverse('unsubscribe', args=(self.uuid,))
+
+    def __str__(self):
+        return self.email
+
+    def save(self, *args, **kwargs):
+        self.uid = str(uuid.uuid4())
+        super.save(*args, **kwargs)

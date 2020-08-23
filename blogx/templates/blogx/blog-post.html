@@ -12,9 +12,10 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-    .content {
-        font-family: 'Varela Round', sans-serif;
-    }
+  .content {
+    font-family: 'Varela Round', sans-serif;
+  }
+
   p {
     text-align: justify;
   }
@@ -59,7 +60,7 @@
 
       <!-- Post Content -->
       <div class="content">
-      {{ post.content | safe }}
+        {{ post.content | safe }}
       </div>
       <hr>
 
@@ -67,9 +68,19 @@
       <div class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
-          <form  method="POST" action="{{ post.get_absolute_url }}">
-          {% csrf_token %}
+          <form method="POST" action="{{ post.get_absolute_url }}">
+            {% csrf_token %}
             <div class="form-group">
+              {% if form.errors %}
+              <ul class="list-group">
+                {% for error in form.errors %}
+                <li class="alert alert-danger">
+                  {{ error }}
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+
               {{ form.message }}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

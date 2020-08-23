@@ -10,7 +10,16 @@ Blog | CyberKrypts
 <div class="container">
 
   <!-- Page Heading/Breadcrumbs -->
-  <h1 class="mt-4 mb-3">CyberKrypt's Blog
+  <h1 class="mt-4 mb-3">
+  {% if tagx %}
+  Posts with tag {{ tagx }} ({{ search_count }})
+  {% elif catx %}
+  Posts with category {{ catx }} ({{ search_count }})
+  {% elif searchx %}
+  Results for {{ searchx }} ({{ search_count }})
+  {% else %}
+  CyberKrypt's Blog
+  {% endif %}
     <!-- <small>Art of hacking</small> -->
   </h1>
 

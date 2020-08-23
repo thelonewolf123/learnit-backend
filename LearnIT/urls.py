@@ -37,5 +37,4 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    path('news_letter/', views.news_letter, name='news-letter'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

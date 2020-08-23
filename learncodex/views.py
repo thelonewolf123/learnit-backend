@@ -163,7 +163,8 @@ def course_category(request):
     context = {}
     category = request.GET['c']
     try:
-        courses = Category.objects.get(name=category)
+        cat = Category.objects.get(name=category)
+        courses = FreeCourse.objects.filter(category=cat)
     except Exception as e:
         print(e)
         raise Http404
@@ -182,7 +183,7 @@ def course_category(request):
 
     context['courses'] = page_obj
     context['page_obj'] = page_obj
-    context['categories'] = Category.objects.all()
+    context['categories'] = categories
     context['tags'] = Tag.objects.all()
     context['catx'] = category
 

@@ -43,7 +43,7 @@ def search_blog(request):
 
     search = request.GET['q']
     context = {}
-    context['search'] = search
+    context['searchx'] = search
     try:
         result = Post.objects.filter(title__icontains=search)
         categories = Category.objects.all()
@@ -76,7 +76,7 @@ def category_blog(request):
 
     search = request.GET['c']
     context = {}
-    context['category_view'] = search
+    context['catx'] = search
     try:
         category = Category.objects.get(name=search)
         result = Post.objects.filter(category=category)
@@ -84,7 +84,7 @@ def category_blog(request):
     except Exception as e:
         print(e)
         raise Http404
-    page_number = request.GET.get('page')
+    page_number = request.GET.get('page', 1)
     paginator = Paginator(result, 5)
     try:
         page_obj = paginator.get_page(page_number)
@@ -103,18 +103,18 @@ def category_blog(request):
     if result.count() > 5:
         context['is_paginated'] = True
 
-    return render(request, 'blogx/blog.html', context)
+    return render(request, 'blogx/blog-home.html', context)
 
 
 def tag_blog(request):
 
     search = request.GET['t']
     context = {}
-    context['tag_view'] = search
+    context['tagx'] = search
     try:
         result = Post.objects.filter(tags__icontains=search)
         categories = Category.objects.all()
-        page_number = request.GET.get('page')
+        page_number = request.GET.get('page', 1)
     except Exception as e:
         print(e)
         raise Http404
@@ -136,7 +136,7 @@ def tag_blog(request):
     if result.count() > 5:
         context['is_paginated'] = True
 
-    return render(request, 'blogx/blog.html', context)
+    return render(request, 'blogx/blog-home.html', context)
 
 
 def single_blog(request, id):
@@ -182,3 +182,29 @@ def single_blog(request, id):
         form = CommentForm()
         context['form'] = form
         return render(request, 'blogx/blog-post.html', context)
+
+
+def news_letter(request):
+
+    if request.method == 'POST':
+
+        email = request.POST['email']
+        NewsLetter.objects.create(email=email)
+        messages.success(request, "Your E-mail has been successfuly added.")
+        return redirect('index')
+
+    else:
+        raise Http404
+
+
+def unsubscribe(request, uuid):
+
+    try:
+        user = NewsLetter.objects.get(uuid=uuid)
+        user.delete()
+    except Exception as e:
+        print(e)
+        messages.error(request, "Something went wrong, try again.")
+        return redirect('index')
+    messages.success(request, "Your E-mail has been successfull removed")
+    return redirect('index')

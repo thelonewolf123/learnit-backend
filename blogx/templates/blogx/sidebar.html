@@ -7,6 +7,9 @@
             <div class="card-body">
                 <form action="{% url 'search_blog' %}" class="form-inline">
                     <input type="text" name="q" class="form-control d-inline" placeholder="Search for..."
+                        {% if searchx %}
+                            value="{{ searchx }}"
+                        {% endif %}
                         aria-label="Search for..." aria-describedby="button-addon2"
                         style="border-top-right-radius: 0px; border-bottom-right-radius: 0px; height: 2.4rem;">
                     <span class="input-group-append">
@@ -24,9 +27,9 @@
                         {% if not forloop.counter|divisibleby:"2" %}
                             <li>
                                 {% if post %}
-                                    <a href="#"> {{ row }} </a>
+                                    <a href="{% url 'tag_blog' %}?t={{ row }}"> {{ row }} </a>
                                 {% else %}
-                                    <a href="#"> {{ row.name }} </a>
+                                    <a href="{% url 'tag_blog' %}?t={{ row.name }}"> {{ row.name }} </a>
                                 {% endif %}   
                             </li>
                        {% endif %}
@@ -39,9 +42,9 @@
                         {% if forloop.counter|divisibleby:"2" %}
                             <li>
                                 {% if post %}
-                                    <a href="#"> {{ row }} </a>
+                                    <a href="{% url 'tag_blog' %}?t={{ row }}"> {{ row }} </a>
                                 {% else %}
-                                    <a href="#"> {{ row.name }} </a>
+                                    <a href="{% url 'tag_blog' %}?t={{ row.name }}"> {{ row.name }} </a>
                                 {% endif %} 
                             </li>
                        {% endif %}
@@ -49,7 +52,6 @@
                         </ul>
                     </div>
                 </div> 
-
         </div>
 
         <!-- Categories Widget -->
@@ -62,7 +64,7 @@
                         {% for row in categories %}
                         {% if not forloop.counter|divisibleby:"2" %}
                             <li>
-                                <a href="#" class="mb-1"> {{ row.name }} </a>
+                                <a href="{% url 'category_blog' %}?c={{ row.name }}" class="mb-1"> {{ row.name }} </a>
                             </li>
                        {% endif %}
                        {% endfor %}
@@ -73,7 +75,7 @@
                         {% for row in categories %}
                         {% if forloop.counter|divisibleby:"2" %}
                             <li>
-                                <a href="#" class="mb-1"> {{ row.name }} </a>
+                                <a href="{% url 'category_blog' %}?c={{ row.name }}" class="mb-1"> {{ row.name }} </a>
                             </li>
                        {% endif %}
                        {% endfor %}
@@ -85,10 +87,9 @@
 
         <!-- Side Widget -->
         <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
+            <h5 class="card-header">Quote</h5>
             <div class="card-body">
-                You can put anything you want inside of these side widgets. They are easy to use, and feature the new
-                Bootstrap 4 card containers!
+                We are not selling websites, we building websites that sales.
             </div>
         </div>
 
