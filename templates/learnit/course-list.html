@@ -30,69 +30,71 @@ LearnIT | Courses
     </form>
 </div>
 <div class="container-fluid">
+    <div class="m-4 index-title">
+        <h2 class="text-center">
+            Available courses
+        </h2>
+    </div>
     <div class="row">
-        <div class="col-md-3 mt-5 d-none d-md-block">
-            <h3 class="text-center">
-                Catogeries
-            </h3>
-
-            <ul class="list-group">
-                {% for category in categories %}
-                <a href="{% url 'course-category' %}?c={{ category.name }}" class="list-group-item list-group-item-action">
-                    {{ category.name }}
-                </a>
-                {% endfor %}
-            </ul>
-
+        <div class="col-md-3 d-none d-md-block">
+            <div class="card mb-5">
+                <h5 class="card-header">Categories</h5>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        {% for row in categories %}
+                        <li class="mb-1">
+                            <a href="{% url 'course-category' %}?c={{ row.name }}" class="mb-1"> {{ row.name }} </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-md-9">
             <div class="container">
-                <div class="m-4 index-title ">
-                    <h2 class="text-center course-title">
-                        {% if catx %}
-                        Courses with category <strong>{{ catx }}</strong> 
-                        {% elif searchx %}
-                        Results for <strong>{{ searchx }}</strong> 
-                        {% else %}
-                        Available courses
-                        {% endif %}
-                    </h2>
-                </div>
-                <ul class="list-group">
-                    {% for course in courses %}
-                    <li class="card m-1 p-2 hoverable">
-                        <div class="row course-item">
-                            <div class="col-md-3">
-                                <img src="/media/{{ course.title_img }}" alt="thumbnail" class="img-thumbnail">
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="course-title">
-                                    {{ course.title }}
-                                </h3>
-                                <p class="course-discription">
-                                    {{ course.short_disc | safe }}
-                                </p>
-                                <div class="container">
-                                    <h4>
-                                        <strong class="float-left p-3">
-                                            Price: Free
-                                        </strong>
-                                    </h4>
-                                    <a href="{% url 'course-detail' course=course.slug %}"
-                                        class="btn btn-primary float-right">
-                                        Enroll now
+                <div class="row">
+                    {% for sub in courses %}
+                    <div class="col-xs-12 col-md-4">
+                        <div class="card  course-card">
+                            <a class="img-card" href="{% url 'course-detail' course=sub.slug %}">
+                                <img src="{{ sub.title_img.url }}" />
+                            </a>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    <a href=""> {{ sub.course.title }}
                                     </a>
+                                </h4>
+                                <div>
+                                    <div class="float-left">
+                                        <i class="fa fa-user">
+                                        </i>
+                                        400
+                                        <small>students</small>
+                                    </div>
+                                    <div class="float-right">
+                                        <div class="d-inline">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="crear-fix"></div>
+                            </div>
+                            <div class="card-read-more">
+                                <a href="{% url 'course-detail' course=sub.slug %}"
+                                    class="btn btn-link btn-block">
+                                    Learn now
+                                </a>
                             </div>
                         </div>
-                    </li>
-
+                    </div>
                     {% endfor %}
+                </div>
 
-                </ul>
-
-                {% include "pagination.html" %}
+                {% include 'pagination.html' %}
             </div>
         </div>
     </div>
