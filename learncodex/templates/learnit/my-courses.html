@@ -2,15 +2,7 @@
 {% load static %}
 
 {% block title %}
-{% if tagx %}
-Courses with tag {{ tagx }}
-{% elif catx %}
-Courses with category {{ catx }}
-{% elif searchx %}
-Results for {{ searchx }}
-{% else %}
 LearnIT | Courses
-{% endif %}
 {% endblock %}
 
 
@@ -22,9 +14,9 @@ LearnIT | Courses
 {% block content %}
 
 <div class="d-none d-sm-none d-lg-flex search-form">
-    <form method="GET" action="{% url 'course-search' %}" class="form-inline">
-        <input type="text" name="s" class="form-control" placeholder="Enter your search term" id="search-input">
-        <button type="submit" class="btn btn-success search-btn m-0">
+    <form action="#" class="form-inline">
+        <input type="text" name="search" class="form-control" placeholder="Enter your search term" id="search-input">
+        <button class="btn btn-success search-btn m-0">
             Search
         </button>
     </form>
@@ -56,8 +48,8 @@ LearnIT | Courses
                     {% for sub in courses %}
                     <div class="col-xs-12 col-md-4">
                         <div class="card  course-card">
-                            <a class="img-card" href="{% url 'course-detail' course=sub.slug %}">
-                                <img src="{{ sub.title_img.url }}" />
+                            <a class="img-card" href="{% url 'course-learn' course=sub.course.slug %}">
+                                <img src="{{ sub.course.title_img.url }}" />
                             </a>
                             <div class="card-content">
                                 <h4 class="card-title">
@@ -68,23 +60,23 @@ LearnIT | Courses
                                     <div class="float-left">
                                         <i class="fa fa-user">
                                         </i>
-                                        400
+                                        {{ sub.course.subscription_set.count }}
                                         <small>students</small>
                                     </div>
                                     <div class="float-right">
-                                        <div class="d-inline">
+                                        <!-- <div class="d-inline">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="card-read-more">
-                                <a href="{% url 'course-detail' course=sub.slug %}"
+                            <div class="card-read-more bg-success">
+                                <a href="{% url 'course-learn' course=sub.course.slug %}"
                                     class="btn btn-link btn-block">
                                     Learn now
                                 </a>
@@ -99,4 +91,6 @@ LearnIT | Courses
         </div>
     </div>
 </div>
+
+
 {% endblock %}

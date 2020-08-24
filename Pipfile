@@ -13,6 +13,8 @@ pillow = "*"
 django-storages = "*"
 zappa = "*"
 bleach = "*"
+django-crispy-forms = "*"
+django-summernote = "*"
 
 [requires]
 python_version = "3.8"
