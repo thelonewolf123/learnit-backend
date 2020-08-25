@@ -99,6 +99,15 @@ class FreeCourse(models.Model):
         super().save(*args, **kwargs)
 
 
+class CoursePrerequisite(models.Model):
+    course = models.ForeignKey(FreeCourse, on_delete=models.CASCADE)
+    prerequisite = models.CharField(max_length=600, null=False)
+
+    def __str__(self):
+
+        return self.prerequisite    
+
+
 class CourseSection(models.Model):
     course = models.ForeignKey(FreeCourse, on_delete=models.CASCADE)
     title = models.CharField(max_length=600, null=False)

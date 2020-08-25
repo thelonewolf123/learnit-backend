@@ -10,8 +10,10 @@ from .models import FreeCourse, FreeLesson, Subscription, Review, Category, Tag
 
 
 def index(request):
+    courses = FreeCourse.objects.all().order_by('-id')
     context = {}
     context['home_nav'] = 'active'
+    context['courses'] = courses[0:3]
     return render(request, 'learnit/home.html', context=context)
 
 
