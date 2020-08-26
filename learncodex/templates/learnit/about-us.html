@@ -2,7 +2,146 @@
 {% load static %}
 
 {% block title %}
-LearnIT | Courses
+About Us | LearnIT
+{% endblock %}
+
+{% block header %}
+<style>
+    .row.heading h2 {
+        color: black;
+        font-size: 52.52px;
+        line-height: 95px;
+        font-weight: 400;
+        text-align: center;
+        margin: 0 0 40px;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .heading.heading-icon {
+        display: block;
+    }
+
+    .padding-lg {
+        display: block;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .practice-area.padding-lg {
+        padding-bottom: 55px;
+        padding-top: 55px;
+    }
+
+    .practice-area .inner {
+        border: 1px solid #999999;
+        text-align: center;
+        margin-bottom: 28px;
+        padding: 40px 25px;
+    }
+
+    .our-webcoderskull .cnt-block:hover {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        border: 0;
+    }
+
+    .practice-area .inner h3 {
+        color: #3c3c3c;
+        font-size: 24px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        padding: 10px 0;
+    }
+
+    .practice-area .inner p {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 400;
+    }
+
+    .practice-area .inner img {
+        display: inline-block;
+    }
+
+
+    .our-webcoderskull {
+        /* background: url("http://www.webcoderskull.com/img/right-sider-banner.png") no-repeat center top / cover; */
+
+    }
+
+    .our-webcoderskull .cnt-block {
+        float: left;
+        width: 100%;
+        background: #fff;
+        padding: 30px 20px;
+        text-align: center;
+        border: 2px solid #d5d5d5;
+        margin: 0 0 28px;
+    }
+
+    .our-webcoderskull .cnt-block figure {
+        width: 148px;
+        height: 148px;
+        border-radius: 100%;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    .our-webcoderskull .cnt-block img {
+        width: 148px;
+        height: 148px;
+        border-radius: 100%;
+    }
+
+    .our-webcoderskull .cnt-block h3 {
+        color: #2a2a2a;
+        font-size: 20px;
+        font-weight: 500;
+        padding: 6px 0;
+        text-transform: uppercase;
+    }
+
+    .our-webcoderskull .cnt-block h3 a {
+        text-decoration: none;
+        color: #2a2a2a;
+    }
+
+    .our-webcoderskull .cnt-block h3 a:hover {
+        color: #337ab7;
+    }
+
+    .our-webcoderskull .cnt-block p {
+        color: #2a2a2a;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+
+    .our-webcoderskull .cnt-block .follow-us {
+        margin: 20px 0 0;
+    }
+
+    .our-webcoderskull .cnt-block .follow-us li {
+        display: inline-block;
+        width: auto;
+        margin: 0 5px;
+    }
+
+    .our-webcoderskull .cnt-block .follow-us li .fa {
+        font-size: 24px;
+        color: #767676;
+    }
+
+    .our-webcoderskull .cnt-block .follow-us li .fa:hover {
+        color: #025a8e;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -23,71 +162,97 @@ LearnIT | Courses
     <!-- Intro Content -->
     <div class="row">
         <div class="col-lg-6">
-            <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
+            <img class="img-fluid rounded mb-4" src="{% static 'about-page.jpg' %}" alt="">
         </div>
         <div class="col-lg-6">
             <h2>About CyberKrpts</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique?
-                Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta
-                dolorem non blanditiis ex fugiat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum
-                aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit
-                dolorum!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa
-                voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus
-                perspiciatis quis?</p>
+            <p class="lead">Cyber Krypts is a Startup with young and aspiring team of Four members. All got there own
+                and unique skills in the field of web design. Even though we are new, Our team has experince in
+                projects. We are available for hire in the wide range of products and We will also complete your
+                unfinished projects. 24/7 Assisstance. </p>
         </div>
     </div>
     <!-- /.row -->
 
-    <!-- Team Members -->
-    <h2>Our Team</h2>
+    <section class="our-webcoderskull padding-lg">
+        <div class="container">
+            <div class="row heading heading-icon">
+                <h2 class="h2">Our Team</h2>
+            </div>
+            <ul class="row">
+                <li class="col-12 col-md-6 col-lg-3">
+                    <div class="cnt-block equal-hight" style="height: 349px;">
+                        <figure><img src="{% static 'streamer/images/Himal.png' %}" class="img-responsive" alt="">
+                        </figure>
+                        <!-- <figure><img src="http://www.webcoderskull.com/img/team1.png" class="img-responsive" alt=""></figure> -->
+                        <h3><a href="#">Himal</a></h3>
+                        <p>Ethical Hacker &amp; Full Stack Developer</p>
+                        <ul class="follow-us clearfix">
+                            <li><a href="https://www.instagram.com/comming_soon_official/"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://twitter.com/himal9626"><i class="fa fa-twitter"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://t.me/commingsoon9626"><i class="fa fa-telegram"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="col-12 col-md-6 col-lg-3">
+                    <div class="cnt-block equal-hight" style="height: 349px;">
+                        <figure><img src="{% static 'streamer/images/harish.png' %}" class="img-responsive" alt="">
+                        </figure>
+                        <!-- <figure><img src="http://www.webcoderskull.com/img/team4.png" class="img-responsive" alt=""></figure> -->
+                        <h3><a href="#">Harish Kumar</a></h3>
+                        <p>FullStack Developer &amp; Python Programmer</p>
+                        <ul class="follow-us clearfix">
+                            <li><a href="https://www.instagram.com/cyberhunter.hk/"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://twitter.com/CyberhunterH"><i class="fa fa-twitter"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://t.me/thelonewolf123"><i class="fa fa-telegram"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </li>
 
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 text-center">
-                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Team Member</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia
-                        eum ipsum fugiat odio officiis odit.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">name@example.com</a>
-                </div>
-            </div>
+
+                <li class="col-12 col-md-6 col-lg-3">
+                    <div class="cnt-block equal-hight" style="height: 349px;">
+                        <figure><img src="{% static 'streamer/images/nithish.png' %}" class="img-responsive" alt="">
+                        </figure>
+                        <!-- <figure><img src="http://www.webcoderskull.com/img/team2.png" class="img-responsive" alt=""></figure> -->
+                        <h3><a href="#">Nithish</a></h3>
+                        <p>Designer &amp; Cinimotographer<br>(Video Editor)</p>
+                        <ul class="follow-us clearfix">
+                            <li><a href="https://www.instagram.com/s_nithish_official/"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://twitter.com/NITHISH1217"><i class="fa fa-twitter"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://swhimal.blogspot.com/t.me/Cinemotographer"><i class="fa fa-telegram"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="col-12 col-md-6 col-lg-3">
+                    <div class="cnt-block equal-hight" style="height: 349px;">
+                        <figure><img src="{% static 'streamer/images/subash.png' %}" class="img-responsive" alt="">
+                        </figure>
+                        <!-- <figure><img src="http://www.webcoderskull.com/img/team3.png" class="img-responsive" alt=""></figure> -->
+                        <h3><a href="#">Subash</a></h3>
+                        <p>Frontend Developer <br> Blogger &amp; Designer</p>
+                        <ul class="follow-us clearfix">
+                            <li><a href="https://www.instagram.com/hacker_bose/"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://twitter.com/SUBASHBOSE1999?s=08"><i class="fa fa-twitter"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
         </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 text-center">
-                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Team Member</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia
-                        eum ipsum fugiat odio officiis odit.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">name@example.com</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 text-center">
-                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Team Member</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia
-                        eum ipsum fugiat odio officiis odit.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">name@example.com</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
+    </section>
 
     <!-- Our Customers -->
     <!-- <h2>Our Customers</h2>

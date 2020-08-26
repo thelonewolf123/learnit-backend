@@ -9,7 +9,7 @@ Courses with category {{ catx }}
 {% elif searchx %}
 Results for {{ searchx }}
 {% else %}
-LearnIT | Courses
+Courses | LearnIT
 {% endif %}
 {% endblock %}
 
@@ -31,8 +31,14 @@ LearnIT | Courses
 </div>
 <div class="container-fluid">
     <div class="m-4 index-title">
-        <h2 class="text-center">
-            Available courses
+        <h2 class="text-center h2">
+            {% if catx %}
+            Courses with category {{ catx }} ({{ courses.count }})
+            {% elif searchx %}
+            Results for {{ searchx }} ({{ courses.count }})
+            {% else %}
+            Availabe courses
+            {% endif %}
         </h2>
     </div>
     <div class="row">
