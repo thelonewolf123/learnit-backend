@@ -139,8 +139,6 @@ def course_search(request):
     page_number = request.GET.get('page')
     paginator = Paginator(courses, 5)
 
-    categories = Category.objects.all()
-
     try:
         page_obj = paginator.get_page(page_number)
     except PageNotAnInteger:

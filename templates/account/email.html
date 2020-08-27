@@ -11,7 +11,7 @@
     {% if user.emailaddress_set.all %}
     <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
     <div class="row m-1">
-      <div class="co-md-4 offset-md-4">
+      <div class="co-md-4 offset-md-2">
         <form action="{% url 'account_email' %}" class="email_list" method="post">
           {% csrf_token %}
           <fieldset class="blockLabels">
@@ -36,10 +36,10 @@
             {% endfor %}
 
             <div class="buttonHolder">
-              <button class="secondaryAction" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
-              <button class="secondaryAction" type="submit"
+              <button class="btn btn-success" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
+              <button class="btn btn-primary" type="submit"
                 name="action_send">{% trans 'Re-send Verification' %}</button>
-              <button class="btn btn-success" type="submit" name="action_remove">{% trans 'Remove' %}</button>
+              <button class="btn btn-danger" type="submit" name="action_remove">{% trans 'Remove' %}</button>
             </div>
 
           </fieldset>

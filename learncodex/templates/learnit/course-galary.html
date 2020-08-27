@@ -23,83 +23,87 @@
 </nav> -->
 
 <div class="row content container-fluid mt-3">
-    <div class="col-md-8 m-0 p-3">
-        <div class="row">
-            {% if paid %}
-            <video id="player" class="img-fluid w-100" playsinline controls data-poster="/path/to/poster.jpg">
-                <!-- <source
+  <div class="col-md-8 m-0 p-3">
+    <div class="row">
+      {% if paid %}
+      <video id="player" class="img-fluid w-100" playsinline controls data-poster="/path/to/poster.jpg">
+        <!-- <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="1080" srclang="FHD" />
                 <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="720" /> -->
-                <source src="#" type="video/mp4" size="720" />
+        <source src="#" type="video/mp4" size="720" />
 
-                <!-- Captions are optional -->
-                <!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
-            </video>
-            {% else %}
-            <video controls="controls" id="player">
+        <!-- Captions are optional -->
+        <!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
+      </video>
+      {% else %}
+      <!-- <video controls="controls" id="player">
                 <source type="video/mp4" src="{{ lesson.dropbox_url }}" size="720">
-            </video>
-            {% endif %}
-        </div>
-        <div class="row">
-            <div class="p-1 m-2">
-                <h2 class="title">{{ lesson.title }}</h2>
-                <div class="p-2">
-                    <div class="d-flex justify-content-space-between">
-                        <button class="feedback m-2 d-inline" type="button" data-toggle="modal" data-target="#modalPoll-1">Feedback</button>
-                        <button class="feedback m-2 d-inline" data-toggle="collapse" data-target="#discription"
-                            aria-expanded="false" aria-controls="discription">Discription</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row p-5 collapse dont-collapse-sm" id="discription">
+            </video> -->
 
-            <h3 class="disc-title">Discription</h3>
-            <div class="container discription">
-                <p>
-                    {{ lesson.discription | safe }}
-                </p>
-            </div>
-            <h3 class="mt-5">
-                <strong class="mb-2 d-block">
-                    Having any doubt? <br>
-                </strong>
-                Ask to the instructor,
-            </h3>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form action="{% url 'course-ask' %}" method="POST" class="form-group p-2">
-                            {% csrf_token %}
-                            <input type="text" name="subject" class="form-control m-2" placeholder="Subject">
-                            <input type="hidden" name="course" value="{{ course.slug }}">
-                            <input type="hidden" name="lesson" value="{{ lesson.slug }}">
-                            <textarea type="text" name="question" class="form-control m-2"
-                                placeholder="Ask your doubt,"></textarea>
-                            <button type="submit" class="btn btn-primary m-2">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      <iframe id="simple_player" src="{{ lesson.dropbox_url }}" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      {% endif %}
+    </div>
+    <div class="row">
+      <div class="p-1 m-2">
+        <h2 class="title">{{ lesson.title }}</h2>
+        <div class="p-2">
+          <div class="d-flex justify-content-space-between">
+            <button class="feedback m-2 d-inline" type="button" data-toggle="modal"
+              data-target="#modalPoll-1">Feedback</button>
+            <button class="feedback m-2 d-inline" data-toggle="collapse" data-target="#discription"
+              aria-expanded="false" aria-controls="discription">Discription</button>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="col-md-4">
-        <ul class="list-group my-3">
-            <li class="list-group-item text-center" style="background-color: lightskyblue; color: white;">
-                <strong>Course content</strong>
-            </li>
-            {% for lessonx in lessons %}
-            <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lessonx.slug }}"
-                class="list-group-item list-group-item-action">
-                {{ lessonx.title }}
-            </a>
-            {% endfor %}
-        </ul>
+    <div class="row p-5 collapse dont-collapse-sm" id="discription">
+
+      <h3 class="disc-title">Discription</h3>
+      <div class="container discription">
+        <p>
+          {{ lesson.discription | safe }}
+        </p>
+      </div>
+      <h3 class="mt-5">
+        <strong class="mb-2 d-block">
+          Having any doubt? <br>
+        </strong>
+        Ask to the instructor,
+      </h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <form action="{% url 'course-ask' %}" method="POST" class="form-group p-2">
+              {% csrf_token %}
+              <input type="text" name="subject" class="form-control m-2" placeholder="Subject">
+              <input type="hidden" name="course" value="{{ course.slug }}">
+              <input type="hidden" name="lesson" value="{{ lesson.slug }}">
+              <textarea type="text" name="question" class="form-control m-2" placeholder="Ask your doubt,"></textarea>
+              <button type="submit" class="btn btn-primary m-2">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="col-md-4">
+    <ul class="list-group my-3">
+      <li class="list-group-item text-center" style="background-color: lightskyblue; color: white;">
+        <strong>Course content</strong>
+      </li>
+      {% for lessonx in lessons %}
+      <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lessonx.slug }}"
+        class="list-group-item list-group-item-action">
+        {{ lessonx.title }}
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 <!-- Modal: modalPoll -->
 <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -188,7 +192,12 @@
 <script src="https://cdn.plyr.io/3.6.2/demo.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
 <script>
-    hljs.initHighlightingOnLoad();
+hljs.configure({useBR: true});
+
+document.querySelectorAll('pre').forEach((block) => {
+  hljs.highlightBlock(block);
+});
+
 </script>
 {% include 'messages.html' %}
 {% endblock %}

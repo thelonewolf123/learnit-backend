@@ -57,11 +57,24 @@
       <p>Posted on {{ post.created_month }} {{ post.create_day }}, {{ post.created_year }}</p>
 
       <hr>
-
       <!-- Post Content -->
       <div class="content">
         {{ post.content | safe }}
       </div>
+
+      <h3 class="h3">Comments:</h3>
+      <hr>
+
+      {% for comment in comments %}
+      <div class="media mb-5">
+        <img class="d-flex mr-3 rounded-circle" src="https://i.stack.imgur.com/l60Hf.png" width="50" height="50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0"><strong> {{comment.name}} </strong> </h5>
+          {{ comment.message }}
+        </div>
+      </div>
+      {% endfor %}
+
       <hr>
 
       <!-- Comments Form -->
@@ -80,7 +93,7 @@
                 {% endfor %}
               </ul>
               {% endif %}
-
+              {{ form.name }}
               {{ form.message }}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -89,47 +102,7 @@
       </div>
 
       <!-- Single Comment -->
-      {% for comment in comments %}
-      <div class="media mb-5">
-        <img class="d-flex mr-3 rounded-circle" src="https://i.stack.imgur.com/l60Hf.png" width="50" height="50" alt="">
-        <div class="media-body">
-          <h5 class="mt-0"><strong> {{comment.name}} </strong> </h5>
-          {{ comment.message }}
-        </div>
-      </div>
-      {% endfor %}
 
-      <!-- Comment with nested comments -->
-      {% comment %} <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-          <h5 class="mt-0">Commenter Name</h5>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-          vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-          lacinia congue felis in faucibus.
-
-          <div class="media mt-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-              fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
-
-          <div class="media mt-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-              fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
-
-        </div>
-      </div> {% endcomment %}
 
     </div>
 
@@ -145,6 +118,12 @@
 {% block script %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
 <script>
-  hljs.initHighlightingOnLoad();
+  hljs.configure({
+    useBR: true
+  });
+
+  document.querySelectorAll('pre').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
 </script>
 {% endblock %}

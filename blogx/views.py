@@ -8,7 +8,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 
-from .models import Post, Comment, Category, Tag
+from .models import Post, Comment, Category, Tag, NewsLetter
 from .forms import CommentForm
 
 
@@ -160,7 +160,7 @@ def single_blog(request, id):
         form = CommentForm(request.POST)
         if form.is_valid():
             if request.user.is_authenticated:
-                name = bleach.clean(request.user.username)
+                name = bleach.clean(request.POST['name'])
             else:
                 name = 'Anonymous'
 
@@ -206,5 +206,5 @@ def unsubscribe(request, uuid):
         print(e)
         messages.error(request, "Something went wrong, try again.")
         return redirect('index')
-    messages.success(request, "Your E-mail has been successfull removed")
+    messages.success(request, "Your E-mail has been successfully removed")
     return redirect('index')
