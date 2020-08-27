@@ -152,6 +152,8 @@ def course_search(request):
     context['tags'] = Tag.objects.all()
     context['searchx'] = search
 
+    context['searchx_count'] = courses.count()
+
     if courses.count() > 5:
         context['is_paginated'] = True
 
@@ -186,6 +188,8 @@ def course_category(request):
     context['categories'] = categories
     context['tags'] = Tag.objects.all()
     context['catx'] = category
+
+    context['searchx_count'] = courses.count()
 
     if courses.count() > 5:
         context['is_paginated'] = True

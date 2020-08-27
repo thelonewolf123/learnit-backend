@@ -23,7 +23,7 @@ Courses | LearnIT
 
 <div class="d-none d-sm-none d-lg-flex search-form">
     <form method="GET" action="{% url 'course-search' %}" class="form-inline">
-        <input type="text" name="s" class="form-control" placeholder="Enter your search term" id="search-input">
+        <input type="text" name="s" class="form-control" placeholder="Enter your search term" {% if searchx %} value="{{ searchx }}"  {% endif %} id="search-input">
         <button type="submit" class="btn btn-success search-btn m-0">
             Search
         </button>
@@ -33,9 +33,9 @@ Courses | LearnIT
     <div class="m-4 index-title">
         <h2 class="text-center h2">
             {% if catx %}
-            Courses with category {{ catx }} ({{ courses.count }})
+            Courses with category {{ catx }} ({{ searchx_count }})
             {% elif searchx %}
-            Results for {{ searchx }} ({{ courses.count }})
+            Results for {{ searchx }} ({{ searchx_count }})
             {% else %}
             Availabe courses
             {% endif %}
