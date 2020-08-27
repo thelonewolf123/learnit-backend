@@ -61,10 +61,10 @@
       <div class="content">
         {{ post.content | safe }}
       </div>
-
+      {% if comments.count %}
       <h3 class="h3">Comments:</h3>
       <hr>
-
+      {% endif %}
       {% for comment in comments %}
       <div class="media mb-5">
         <img class="d-flex mr-3 rounded-circle" src="https://i.stack.imgur.com/l60Hf.png" width="50" height="50" alt="">
