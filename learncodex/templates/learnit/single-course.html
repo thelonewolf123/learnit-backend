@@ -37,9 +37,15 @@
                 </div>
                 <div class="row w-100 mt-3 mb-2">
                     <strong>
+                        {% if course.course_type == "free" %}
                         <h2 class="h2">
                             Price: Free
                         </h2>
+                        {% else %}
+                        <h2 class="h2">
+                            Price: Rs. {{ course.price }}
+                        </h2>
+                        {% endif %}
                     </strong>
                 </div>
                 <div class="row mb-2">

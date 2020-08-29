@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django_summernote.admin import SummernoteModelAdmin
-from .models import FreeCourse, FreeLesson, Author, Category, Tag, Subscription, CoursePrerequisite
+from .models import Course, Lesson, Author, Category, Tag, Subscription, CoursePrerequisite, Payment
 
 # Apply summernote to all TextField in model.
 
@@ -14,10 +14,11 @@ class LessonModel(SummernoteModelAdmin):
     summernote_fields = ('discription',)
     exclude = ('slug', )
 
-admin.site.register(FreeCourse, CourseModelAdmin)
-admin.site.register(FreeLesson,LessonModel)
+admin.site.register(Course, CourseModelAdmin)
+admin.site.register(Lesson,LessonModel)
 admin.site.register(Subscription)
 admin.site.register(Author)
 admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(CoursePrerequisite)
+admin.site.register(Payment)

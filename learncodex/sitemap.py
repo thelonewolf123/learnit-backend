@@ -1,7 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.shortcuts import reverse
 
-from .models import FreeCourse
+from .models import Course
 
 
 class StaticViewSitemap(Sitemap):
@@ -17,4 +17,4 @@ class CourseViewSitemap(Sitemap):
 
     def items(self):
 
-        return FreeCourse.objects.all()
+        return Course.objects.all()

@@ -14,4 +14,5 @@ urlpatterns = [
     path('category/', views.course_category, name='course-category'),
     path('search/', views.course_search, name='course-search'),
     path('ask_inst/', views.ask_instructor, name='course-ask'),
+    path('payment/',views.razor_payment,name='payment_status'),
 ]

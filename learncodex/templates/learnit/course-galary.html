@@ -25,15 +25,15 @@
 <div class="row content container-fluid mt-3">
   <div class="col-md-8 m-0 p-3">
     <div class="row">
-      {% if paid %}
-      <video id="player" class="img-fluid w-100" playsinline controls data-poster="/path/to/poster.jpg">
+      {% if course.course_type == "paid" %}
+      <video id="player" class="img-fluid w-100" playsinline controls data-poster="{{ course.title_img }}">
         <!-- <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="1080" srclang="FHD" />
                 <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="720" /> -->
-        <source src="#" type="video/mp4" size="720" />
+        <source src="{{ course.video_720p.url }}" type="video/mp4" size="720" />
 
         <!-- Captions are optional -->
         <!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
@@ -43,7 +43,7 @@
                 <source type="video/mp4" src="{{ lesson.dropbox_url }}" size="720">
             </video> -->
 
-      <iframe id="simple_player" src="{{ lesson.dropbox_url }}" frameborder="0"
+      <iframe id="simple_player" src="{{ lesson.youtube_url }}" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
       {% endif %}

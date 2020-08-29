@@ -66,7 +66,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,'templates'),
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -152,7 +152,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR,'/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {
@@ -192,3 +192,22 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 ADMIN_EMAIL_ADDRESS = [
     'cyberkrypts@gmail.com'
 ]
+
+
+# payment details
+
+ROZER_KEY_ID = "rzp_test_PiFMhJv2nNSGLK"
+ROZER_SECRET_KEY = "oSfbgojZ8hJ4lVNkmkxRhaSp"
+
+# Dropbox storage
+
+DROPBOX_ACCESS_TOKEN = "szQpvabzQZAAAAAAAAAAASAkTplXc5FXnF6wwNq2JGlxyzPLK04H3moxiBeN1tWC"
+DROPBOX_SHARE_LINK_CACHE_TIMEOUT = 3600 * 3
+DROPBOX_CACHE_TIMEOUT = 3600 * 24 * 365
+
+SUMMERNOTE_CONFIG = {
+    # Require users to be authenticated for uploading attachments.
+    'attachment_require_authentication': True,
+    # Set custom storage class for attachments.
+    'attachment_storage_class': 'LearnIT.dropbox.DropboxStorage',
+}

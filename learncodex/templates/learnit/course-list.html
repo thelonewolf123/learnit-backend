@@ -78,7 +78,15 @@ Courses | LearnIT
                                         <small>students</small>
                                     </div>
                                     <div class="float-right">
-                                        <strong>Price: Free</strong>
+                                        {% if course.course_type == "free" %}
+                                        <strong class="strong">
+                                            Price: Free
+                                        </strong>
+                                        {% else %}
+                                        <strong class="strong">
+                                            Price: Rs. {{ course.price }}
+                                        </strong>
+                                        {% endif %}
                                         <!-- <div class="d-inline">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
