@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = ')i!r#evcy-xf@#pg)fu6af=9q7)7pv*j4z7s#5^a_td3+1)(7c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["cyberkrypts.com","www.cyberkrypts.com","34.121.153.165"]
 
 
 # Application definition
