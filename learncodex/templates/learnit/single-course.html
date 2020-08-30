@@ -75,21 +75,21 @@
                                         <div class="card">
 
                                             <!-- Card header -->
-                                            <div class="card-header" role="tab" id="headingOne1">
+                                            <div class="card-header" role="tab" id="headingOne">
                                                 <a data-toggle="collapse" data-parent="#accordionEx"
-                                                    href="#collapseOne1" aria-expanded="true"
-                                                    aria-controls="collapseOne1">
+                                                    href="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
                                                     <h5 class="mb-0">
                                                         Prerequisites to take this course 
-                                                        <i class="fas fa-angle-down rotate-icon">
-                                                        </i>
+                                                        <i class="fas fa-angle-down rotate-icon float-right">
+                                                        </i><div class="clearfix"></div>
                                                     </h5>
                                                 </a>
                                             </div>
 
                                             <!-- Card body -->
-                                            <div id="collapseOne1" class="collapse show" role="tabpanel"
-                                                aria-labelledby="headingOne1" data-parent="#accordionEx">
+                                            <div id="collapseOne" class="collapse show" role="tabpanel"
+                                                aria-labelledby="headingOne" data-parent="#accordionEx">
                                                 <div class="card-body p-0">
                                                     <ol class="list-group">
                                                         {% for lesson in course.courseprerequisite_set.iterator %}
@@ -113,37 +113,37 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h3 class="h3 my-2">Course curriculum</h3>
-
+                                    
                                     <!--Accordion wrapper-->
                                     <div class="accordion md-accordion" id="accordionEx" role="tablist"
                                         aria-multiselectable="true">
-
+                                        {% for section in course.coursesection_set.iterator %}
                                         <!-- Accordion card -->
                                         <div class="card">
 
                                             <!-- Card header -->
-                                            <div class="card-header" role="tab" id="headingOne1">
+                                            <div class="card-header" role="tab" id="headingOne{{ forloop.counter }}">
                                                 <a data-toggle="collapse" data-parent="#accordionEx"
-                                                    href="#collapseOne2" aria-expanded="true"
-                                                    aria-controls="collapseOne1">
-                                                    <h5 class="mb-0">
-                                                        Topics covered in this course 
-                                                        <i class="fas fa-angle-down rotate-icon">
-                                                        </i>
+                                                    href="#collapseOne{{ forloop.counter }}" aria-expanded="true"
+                                                    aria-controls="collapseOne{{ forloop.counter }}">
+                                                    <h5 class="mb-0 float-left">
+                                                        {{ section.title }}
                                                     </h5>
+                                                    <i class="fas fa-angle-down rotate-icon float-right">
+                                                    </i><div class="clearfix"></div>
                                                 </a>
                                             </div>
 
                                             <!-- Card body -->
-                                            <div id="collapseOne2" class="collapse show" role="tabpanel"
-                                                aria-labelledby="headingOne1" data-parent="#accordionEx">
+                                            <div id="collapseOne{{ forloop.counter }}" class="collapse" role="tabpanel"
+                                                aria-labelledby="headingOne{{ forloop.counter }}" data-parent="#accordionEx">
                                                 <div class="card-body p-0">
                                                     <ol class="list-group">
-                                                        {% for lesson in course.freelesson_set.iterator %}
+                                                        {% for lesson in section.lesson_set.iterator %}
 
                                                         <li class="list-group-item">
-                                                           {{ forloop.counter }}. {{ lesson.title }} <span
-                                                                class="badge bg-primary">video</span>
+                                                           {{ forloop.counter }}. {{ lesson.title }} 
+                                                           <span class="badge bg-primary">video</span>
                                                         </li>
 
                                                         {% endfor %}
@@ -155,10 +155,10 @@
                                         </div>
                                         <!-- Accordion card -->
 
+                                        {% endfor %}
                                     </div>
+                                    
                                     <!-- Accordion wrapper -->
-
-
                                 </div>
                             </div>
                         </div>

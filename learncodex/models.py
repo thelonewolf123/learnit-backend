@@ -119,7 +119,7 @@ class CoursePrerequisite(models.Model):
 
     def __str__(self):
 
-        return f"{self.prerequisite}   [ {course.title} ]"
+        return f"{self.prerequisite}   [ {self.course.title} ]"
 
 
 class CourseSection(models.Model):
@@ -134,12 +134,14 @@ class CourseSection(models.Model):
 class Lesson(models.Model):
 
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    section = models.ForeignKey(CourseSection, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=650, unique=True)
     title = models.CharField(max_length=600, null=False)
-    youtube_url = models.CharField(max_length=100, null=True)
+    youtube_url = models.CharField(max_length=250, null=True, blank=True)
+    dropbox_url = models.CharField(max_length=250, null=True, blank=True)
     discription = models.TextField(max_length=10000, null=False)
-    video_720p = models.FileField(upload_to='course/learnIT/video_720p', validators=[
-                                  FileExtensionValidator(allowed_extensions=['mp4', 'webm'])], null=True, blank=True, storage=DROPBOX_STORAGE)
+#     video_720p = models.FileField(upload_to='course/learnIT/video_720p', validators=[
+#                               FileExtensionValidator(allowed_extensions=['mp4', 'webm'])], null=True, blank=True, storage=DROPBOX_STORAGE)
 #     video_480p = models.FileField(upload_to='course/learnIT/video_480p/', validators=[
 #                                   FileExtensionValidator(allowed_extensions=['mp4', 'webm'])])
 #     video_260p = models.FileField(upload_to='course/learnIT/video_260p/', validators=[

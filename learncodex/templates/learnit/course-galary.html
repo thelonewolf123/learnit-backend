@@ -26,22 +26,19 @@
   <div class="col-md-8 m-0 p-3">
     <div class="row">
       {% if course.course_type == "paid" %}
-      <video id="player" class="img-fluid w-100" playsinline controls data-poster="{{ course.title_img }}">
+      <video id="player" class="img-fluid w-100" playsinline controls data-poster="{{ course.title_img.url }}">
         <!-- <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="1080" srclang="FHD" />
                 <source
                     src="https://cyberkryptslearnit.s3.ap-south-1.amazonaws.com/00+development+environment+setup.mp4"
                     type="video/mp4" size="720" /> -->
-        <source src="{{ course.video_720p.url }}" type="video/mp4" size="720" />
+        <source src="{{ lesson.dropbox_url }}" type="video/mp4" size="720" />
 
         <!-- Captions are optional -->
         <!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
       </video>
       {% else %}
-      <!-- <video controls="controls" id="player">
-                <source type="video/mp4" src="{{ lesson.dropbox_url }}" size="720">
-            </video> -->
 
       <iframe id="simple_player" src="{{ lesson.youtube_url }}" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -61,14 +58,14 @@
         </div>
       </div>
     </div>
-    <div class="row p-5 collapse dont-collapse-sm" id="discription">
-
-      <h3 class="disc-title">Discription</h3>
+    <div class="row p-1 collapse" id="discription">
+      <hr>
       <div class="container discription">
         <p>
           {{ lesson.discription | safe }}
         </p>
       </div>
+      <hr>
       <h3 class="mt-5">
         <strong class="mb-2 d-block">
           Having any doubt? <br>
@@ -92,17 +89,53 @@
     </div>
   </div>
   <div class="col-md-4">
-    <ul class="list-group my-3">
-      <li class="list-group-item text-center" style="background-color: lightskyblue; color: white;">
-        <strong>Course content</strong>
-      </li>
-      {% for lessonx in lessons %}
-      <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lessonx.slug }}"
-        class="list-group-item list-group-item-action">
-        {{ lessonx.title }}
-      </a>
-      {% endfor %}
-    </ul>
+    <div class="card mt-3">
+      <div class="card-header"  style="border-radius: 0px; border-bottom-width: 5px ; border-color: #000 ;">
+        <h4 class="h4 text-center"> Course content </h4>
+      </div>
+    </div>
+    <div class="accordion md-accordion mb-5" id="accordionEx" role="tablist" aria-multiselectable="true">
+      {% for section in course.coursesection_set.iterator %}
+      <!-- Accordion card -->
+      <div class="card">
+    
+        <!-- Card header -->
+        <div class="card-header" role="tab" id="heading{{ forloop.counter }}">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{ forloop.counter }}"
+            aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+            <h5 class="mb-0 float-left">
+              <!-- Title -->
+              {{ section.title }}
+            </h5>
+            <i class="fas fa-angle-down rotate-icon float-right"></i> <div class="clearfix"></div>
+          </a>
+        </div>
+    
+        <!-- Card body -->
+        <div id="collapse{{ forloop.counter }}" class="collapse {% if lessonz in section.lesson_set.iterator %} show {% endif %}" role="tabpanel" aria-labelledby="heading{{ forloop.counter }}"
+          data-parent="#accordionEx">
+          <div class="card-body p-0">
+             <!-- content -->
+            <ol class="list-group">
+              {% for lesson in section.lesson_set.iterator %}
+
+              <a href="{% url 'course-learn' course=course.slug %}?lesson={{ lesson.slug }}" class="list-group-item" style="border-left-width: 0px; border-right-width: 0px; border-top-width: 0px ; margin-bottom: 3px;">
+                 {{ lesson.title }} 
+                 <span class="badge bg-primary">video</span>
+              </a>
+
+              {% endfor %}
+
+          </ol>
+          </div>
+        </div>
+    
+      </div>
+      <!-- Accordion card -->
+    {% endfor %}
+    </div>
+    <!-- Accordion wrapper -->
+    
   </div>
 </div>
 <!-- Modal: modalPoll -->
@@ -192,12 +225,13 @@
 <script src="https://cdn.plyr.io/3.6.2/demo.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
 <script>
-hljs.configure({useBR: true});
+  hljs.configure({
+    useBR: true
+  });
 
-document.querySelectorAll('pre').forEach((block) => {
-  hljs.highlightBlock(block);
-});
-
+  document.querySelectorAll('pre').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
 </script>
 {% include 'messages.html' %}
 {% endblock %}

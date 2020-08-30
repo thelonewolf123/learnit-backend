@@ -27,8 +27,6 @@ def courses(request):
     page_number = request.GET.get('page')
     paginator = Paginator(courses, 5)
 
-    categories = Category.objects.all()
-
     try:
         page_obj = paginator.get_page(page_number)
     except PageNotAnInteger:
@@ -78,6 +76,7 @@ def course_learning(request, course):
         context['lessons'] = Lesson.objects.filter(course=course_obj)
         context['lesson'] = Lesson.objects.get(slug=lesson)
         context['course'] = course_obj
+        context['lessonz'] = Lesson.objects.get(slug=lesson)
     except Exception as e:
         print(e)
         raise Http404

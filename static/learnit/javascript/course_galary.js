@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log(screen)
       if(screen == 'sm' || screen == 'xs')
       {
-          $('#discription').collapse('toggle')
+          $('#discription').collapse('hide')
           $('.content').css('margin-left','0px')
           $('.content').css('margin-right','0px')
           console.log(screen)
