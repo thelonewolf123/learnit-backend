@@ -179,8 +179,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'deardiary.team@gmail.com'
-EMAIL_HOST_PASSWORD = 'psqdmgqbrxtvkxjr'
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'cyberkrypts@gmail.com'
+EMAIL_HOST_PASSWORD = 'iiqqoknkhkhqzyjm'
 
 STATIC_URL = '/static/'
 
