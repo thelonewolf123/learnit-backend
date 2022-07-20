@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')i!r#evcy-xf@#pg)fu6af=9q7)7pv*j4z7s#5^a_td3+1)(7c'
+SECRET_KEY = 'hask'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -160,9 +160,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 #         # (``socialaccount`` app) containing the required client
 #         # credentials, or list them here:
 #         'APP': {
-#             'client_id': '798191126419-d8n38i1sgl3rql2v5il6l7f3k00cuvjm.apps.googleusercontent.com',
-#             'secret': 'zU52DpjBaq46Ge1Kaazh-qei',
-#             'key': 'AIzaSyAViHONWckfLzHpgfBazX_birXa2gSmr8A'
+#             'client_id': '',
+#             'secret': '',
+#             'key': ''
 #         }
 #     }
 # }
@@ -179,8 +179,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'cyberkrypts@gmail.com'
-EMAIL_HOST_PASSWORD = 'iiqqoknkhkhqzyjm'
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = ''
+EMAIL_HOST_PASSWORD = ''
 
 STATIC_URL = '/static/'
 
@@ -190,17 +190,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ADMIN_EMAIL_ADDRESS = [
-    'cyberkrypts@gmail.com'
+    ''
 ]
 
 # payment details
 
-ROZER_KEY_ID = "rzp_test_PiFMhJv2nNSGLK"
-ROZER_SECRET_KEY = "oSfbgojZ8hJ4lVNkmkxRhaSp"
+ROZER_KEY_ID = ""
+ROZER_SECRET_KEY = ""
 
 # Dropbox storage
 
-DROPBOX_ACCESS_TOKEN = "szQpvabzQZAAAAAAAAAAASAkTplXc5FXnF6wwNq2JGlxyzPLK04H3moxiBeN1tWC"
+DROPBOX_ACCESS_TOKEN = ""
 DROPBOX_SHARE_LINK_CACHE_TIMEOUT = 3600 * 3
 DROPBOX_CACHE_TIMEOUT = 3600 * 24 * 365
 
